@@ -1,0 +1,46 @@
+{% extends "header/header.html" %} 
+{% load static %} 
+
+{% block title %} 
+Login
+{% endblock %} 
+
+{% block content %}
+  
+<div class="auth-main">
+  <div class="auth_div">
+    <div class="card">
+      <div class="auth_brand log-reg">
+        <a class="navbar-brand" href="">
+          <img style="width: 100px" src="{% static 'assets/images/logo-removebg-preview.png' %}" alt="" />
+          <img style="width: 50px" src="{% static 'image/ACG-removebg-preview(1).png' %}" alt="" />
+        </a>
+      </div>
+      <div class="body body-main">
+        <p class="lead">Login Account</p>
+        
+       
+        
+        <form class="form-auth-small m-t-20" id="registrationForm" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+            <div class="form-group">
+              <input type="email" class="form-control round" id="email" name="email" placeholder="Your Email" required>
+            </div>
+       
+          <div class="form-step">
+            <div class="form-group">
+              <input type="password" class="form-control round" id="password" name="password" placeholder="Password" required>
+            </div>
+          
+           
+            
+              <button type="submit" class="btn btn-success btn-round">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
