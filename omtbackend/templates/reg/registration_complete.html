@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Status</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .progress-container {
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .progress-line {
+      height: 2px;
+      background-color: #e9ecef;
+      position: absolute;
+      width: 80%;
+      top: 50%;
+      left: 10%;
+      z-index: 1;
+    }
+
+    .progress-steps {
+      position: relative;
+      z-index: 2;
+    }
+
+    .step {
+      background-color: #fff;
+    }
+
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 2px solid #28a745;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+    }
+
+    .step-icon i {
+      color: #28a745;
+    }
+
+    .step-text {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+
+    .content-card {
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin: 20px 0;
+    }
+
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .tip-again-btn {
+      background-color: #28a745;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      padding: 20px 0;
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .progress-line {
+        width: 70%;
+        left: 15%;
+      }
+
+      .step-text {
+        font-size: 0.8rem;
+      }
+
+      .content-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar with Logout Button -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      {% comment %} <a class="navbar-brand" href="#">🎯 Registration</a> {% endcomment %}
+      <div class="ms-auto">
+        <form action="{% url 'logout' %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Progress Steps -->
+  <div class="container progress-container">
+    <div class="progress-line"></div>
+    <div class="row progress-steps">
+      <div class="col-4 step">
+        <div class="step-icon">
+          <i class="bi bi-check-circle-fill"></i>
+          <h4>{{ current_ward_members }}</h4>
+        </div>
+        <div class="step-text text-center">Current Ward Members</div>
+      </div>
+      <div class="col-4 step">
+        <div class="step-icon">
+          <i class="bi bi-check-circle-fill"></i>
+          <h4>{{ remaining_ward_members }}</h4>
+        </div>
+        <div class="step-text text-center">Remaining Ward Members</div>
+      </div>
+      <div class="col-4 step">
+        <div class="step-icon">
+          <i class="bi bi-check-circle-fill"></i>
+          <h4>{{ expected_ward_members }}</h4>
+        </div>
+        <div class="step-text text-center">Expected Ward Members</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="content-card">
+      <div class="text-center">
+        <img class="success-icon" src="{{ user_image_url|default:'assets/images/logo-removebg-preview.png' }}" alt="User Profile Image">
+
+        <h3>Account Created and Active</h3>
+        <p class="mb-1">
+          Your request to join the <strong>{{ ward_name }}</strong> Register is currently pending approval <br>
+          Approval will be granted once your ward has at least <strong>{{ expected_ward_members }} registered persons.</strong>
+        </p>
+        <p class="text-muted">📢 Encourage others in your ward to register so your request can be approved faster.</p>
+
+        <a href="{% url 'login' %}" class="tip-again-btn">
+          <i class="bi bi-telegram"></i> Join Waiting Room
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="container footer">
+    <div class="text-center">
+      <p>powered by <strong>OTS INNOVATION</strong></p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

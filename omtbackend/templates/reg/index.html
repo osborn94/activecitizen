@@ -1,0 +1,740 @@
+{% extends "header/homepage_header.html" %}
+{% load static %}
+{% block content %}
+
+
+
+  <body>
+    <div class="background-img">
+      <div class="black-layer">
+        <div class="main-index-container z-2">
+          <nav class="navbar navbar-expand-lg">
+            <div class="container align-items-center">
+              <!-- Brand Name -->
+              <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+                <div
+                  class="brandName align-items-center d-flex justify-content-center align-items-sm-center">
+                  <img
+                    src="{% static 'assets/upnorth/logo-removebg-preview.png' %}"
+                    alt=""
+                    style="width: 80px" />
+                </div>
+                <div
+                  class="d-flex justify-content-center align-items-sm-stretch logo-text">
+                  <h6
+                    class="p-0 m-0 fw-bold"
+                    style="color: #ffff; font-size: 14px">
+                    A C T I V E
+                  </h6>
+                  <h6
+                    class="p-0 m-0 fw-bolder"
+                    style="color: #008a02; font-size: 18px">
+                    CITIZENS
+                  </h6>
+                  <h6
+                    class="p-0 m-0 fw-bold"
+                    style="color: #ffff; font-size: 14px">
+                    G R O U P
+                  </h6>
+                </div>
+              </a>
+
+              <div class="nav-links d-none d-lg-block">
+                <ul>
+                  <li>
+                    <a href="{% url 'home' %}">Home</a>
+                  </li>
+
+                  <li>
+                    <a href="#">Our Achievement</a>
+                  </li>
+
+                  <li>
+                    <a href="#">About Us</a>
+                  </li>
+
+                  <li>
+                    <a href="#">Contact Us</a>
+                  </li>
+
+                  <li class="ms-5">
+                    <a
+                      href="{% url 'login' %}"
+                      class="btn text-dark"
+                      style="background-color: #f8fff8; text-decoration: none"
+                      >Sign-in</a
+                    >
+                  </li>
+
+                  <li>
+                    <a
+                      href="{% url 'register' %}"
+                      class="btn text-dark"
+                      style="background-color: #f8fff8; text-decoration: none"
+                      >Sign-up</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              {% comment %} <div class="donate-now d-none d-lg-block">
+                <a href="#">Donate Now</a>
+              </div> {% endcomment %}
+
+              <button class="menuToggle d-lg-none">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+            </div>
+          </nav>
+          <div class="m-nav-link d-lg-none">
+            <ul>
+              <li>
+                <a href="{% url 'home' %}">Home</a>
+              </li>
+
+              <li>
+                <a href="#">Our Achievement</a>
+              </li>
+
+              <li>
+                <a href="#">About us</a>
+              </li>
+
+              <li>
+                <a href="#">Contact us</a>
+              </li>
+
+              <li>
+                <a href="{% url 'login' %}">Sign-in</a>
+              </li>
+
+              <li>
+                <a href="{% url 'register' %}">Sign-up</a>
+              </li>
+            </ul>
+          </div>
+          <div class="row all-cont">
+            <div class="col-12 col-lg-8 index-text-left">
+              <h1 style="font-family: Roboto">
+                Advocating for the <br />
+                New Nigeria
+              </h1>
+              <p class="mt-5" style="font-family: Open Sans">
+                Join us in a historic movement to achieving the new Nigeria
+                through active participation. For too long we have been docile
+                and our voices silenced. Let’s rise together, united in purpose
+                and strength.
+              </p>
+              <div class="buttons-container">
+                <a href="{% url 'register' %}">
+                  <button
+                    class="btn text-white btn2"
+                    style="background-color: #008a02">
+                    Become an Active Citizen
+                  </button>
+                </a>
+              </div>
+            </div>
+            <div class="col-4 index-img-right d-none d-lg-block">
+              <img src="{% static 'assets/upnorth/img1.png' %}" alt="index Image" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- This segment is for main content -->
+    <div class="main-cards-container d-flex m-3">
+      <div class="main-card">
+        <i class="bi bi-rocket-takeoff" style="background-color: #008a02"></i>
+        <div class="card-body">
+          <h4 style="color: #008a02">MISSION</h4>
+          <p>
+            To empower and unite young Nigerians by fostering political
+            consciousness and active citizenship, thereby driving grassroots
+            initiatives and holding the government accountable to ensure a
+            better Nigeria.
+          </p>
+        </div>
+      </div>
+      <div class="main-card">
+        <i class="bi bi-eye" style="background-color: #00438a"></i>
+        <div class="card-body">
+          <h4 style="color: #00438a">VISION</h4>
+          <p>
+            To create a politically conscious and active youth community that
+            transforms Nigeria into a nation of transparent governance,
+            equitable opportunities, and social justice through active advocacy.
+          </p>
+        </div>
+      </div>
+      <div class="main-card">
+        <i class="bi bi-gem" style="background-color: #8a0088"></i>
+        <div class="card-body">
+          <h4 style="color: #8a0088">VALUES</h4>
+          <p>
+            Empower young Nigerians for leadership and civic responsibility.
+            Advocate for transparency and good governance. Support community
+            projects. Educate on rights and political participation. Build a
+            national network of engaged youth. Ensure free and fair elections.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel-container pb-5">
+      <h4 class="text-center fs-2 mt-5">
+        Our Recent <span style="color: #008a02">Activities</span>
+        <p class="text-center mt-4 fs-6">
+          View some of our recent activities and campaigns in Nigeria from our
+          gallery.
+        </p>
+      </h4>
+      <div class="gallery mt-0">
+        <div class="gallery-container">
+          <img
+            class="gallery-item gallery-item-1"
+            src="{% static 'assets/upnorth/carousel1.png' %}"
+            alt=""
+            data-index="1" />
+          <img
+            class="gallery-item gallery-item-2"
+            src="{% static 'assets/upnorth/north2.jpeg' %}"
+            alt=""
+            data-index="2" />
+          <img
+            class="gallery-item gallery-item-3"
+            src="{% static 'assets/upnorth/obi-abuja-rally-7-.jpg' %}"
+            alt=""
+            data-index="3" />
+          <img
+            class="gallery-item gallery-item-4"
+            src="{% static 'assets/upnorth/PeterObiintheNorth.jpg' %}"
+            alt=""
+            data-index="4" />
+          <img
+            class="gallery-item gallery-item-5"
+            src="{% static 'assets/upnorth/4.jpg' %}"
+            alt=""
+            data-index="5" />
+        </div>
+        <div class="gallery-controls"></div>
+      </div>
+    </div>
+
+    <!-- Volunteer and Polling Unit Agent -->
+    <div class="become-an-agent p-5" style="background: #f8fff8">
+      <div class="row justify-content-around polling-mother">
+        <div class="col-6 mt-4 polling">
+          <h4>
+            Would you like to work as <br />
+            an agent in your
+            <span class="fw-bold" style="color: #008a02"
+              >Polling <br />
+              Unit?</span
+            >
+          </h4>
+          <p class="mt-4">
+            Please click the button below to register and fill out the form
+            provided.
+          </p>
+          <button
+            class="btn text-white mt-5 mb-5"
+            style="background-color: #008a02">
+            Become a Polling Unit Agent
+          </button>
+        </div>
+        <div class="col-12 d-md-col-6 rectangle-div">
+          <img src="{% static 'assets/upnorth/Rectangle 44.png' %}" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="become-an-agenttwo">
+      <img src="{% static 'assets/upnorth/Rectangle 44(1).png' %}" alt="" />
+      <div class="overlay"></div>
+      <div class="content-two">
+        <h4 style="color: black">
+          Would you like to work as <br />
+          an agent in your
+          <span class="fw-bold" style="color: #008a02"
+            >Polling <br />
+            Unit?</span
+          >
+        </h4>
+        <p class="mt-4">
+          Please click the button below to register and fill out the form
+          provided.
+        </p>
+        <button
+          class="btn text-white mt-5 mb-5"
+          style="background-color: #008a02">
+          Become a Polling Unit Agent
+        </button>
+      </div>
+    </div>
+
+    <!-- I-Report -->
+    <div class="i-report-mother pb-3">
+      <div class="cover-green"></div>
+      <div class="over-lay">
+        <img src="{% static 'assets/upnorth/voterbck.png' %}" alt="" class="w-100 h-100" />
+      </div>
+      <br /><br /><b></b>
+      <h2 class="text-center text-white bb" style="font-family: 'Roboto'">
+        iReport
+      </h2>
+      <div class="row mt-3 mb-5">
+        <div class="col-12 col-md-6 mt-5 repoter-black-text">
+          <div class="content-holder-left h-100 ps-1">
+            <h1 class="text-white">
+              Are you observing any <br />
+              <span>anomalies?</span>
+            </h1>
+            <p class="text-white fs-6 mt-5">
+              Act as a good representative by reporting any anomalies? <br />
+              Say something when you see it! <br />
+              Let's work together to build a wonderful nation.
+            </p>
+            <div class="ireport-buttons-container mt-5">
+              <button
+                class="btn btn-outline text-white"
+                style="border: 1px solid white; padding: 10px 50px">
+                View Reports
+              </button>
+              <button class="btn bg-white upload" style="padding: 10px 50px">
+                Upload file
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 obb">
+          <div class="content-holder-right">
+            <div class="row">
+              <div class="col-6 image-full"></div>
+              <div class="col-6">
+                <div class="col image-one-half"></div>
+                <div class="col image-two-half"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Donation -->
+    <div class="donation-container">
+      <div class="row donation-row">
+        <div class="ovalay"></div>
+        <div class="d-none d-md-block col-12 col-md-6">
+          <div class="div">
+            <img src="{% static 'assets/upnorth/donation2.png' %}" alt="" />
+          </div>
+        </div>
+        <div
+          class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+          <div class="div text-white text-start div-right">
+            <h2>Donate to our Cause</h2>
+            <p>
+              Support our cause by making a donation. Your donation <br />
+              can make a powerful impact. Join us in supporting this <br />
+              cause and together, let’s make a difference!
+            </p>
+            <button
+              class="btn text-center text-white px-5"
+              style="background-color: #008a02">
+              Donate Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up coming Event -->
+    <div class="up-coming-container p-5" style="background-color: #f8fff8">
+      <h2 class="text-center mb-5">
+        View our Upcoming <span style="color: #008a02">Events</span>
+      </h2>
+
+      <div class="upcoming-wrapper">
+        <div class="scroller">
+          <div class="card border-primary">
+            <img
+              class="card-img-top"
+              src="{% static 'assets/upnorth/PeterObiintheNorth.jpg' %}"
+              alt="Title" />
+            <div class="card-body2">
+              <h4 class="card-title">Free Campaign Match</h4>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                iste quibusdam sed pariatur! Magni, necessitatibus.
+              </p>
+              <div class="date">
+                <span class="ms-0">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  Tuesday, may 14, 2014
+                </span>
+                |
+                <span>
+                  <i class="fa-regular fa-clock"></i>
+                  4:00 pm
+                </span>
+                |
+                <span>
+                  <i class="fa-solid fa-location-dot"></i>
+                  Kano Town Hall
+                </span>
+              </div>
+            </div>
+            <button
+              class="btn text-white view-more"
+              style="background-color: #8a0088">
+              view more
+            </button>
+          </div>
+
+          <div class="card border-primary">
+            <img
+              class="card-img-top"
+              src="{% static 'assets/upnorth/PeterObiintheNorth.jpg' %}"
+              alt="Title" />
+            <div class="card-body2">
+              <h4 class="card-title">Free Campaign Match</h4>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                iste quibusdam sed pariatur! Magni, necessitatibus.
+              </p>
+              <div class="date">
+                <span class="ms-0">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  Tuesday, may 14, 2014
+                </span>
+                |
+                <span>
+                  <i class="fa-regular fa-clock"></i>
+                  4:00 pm
+                </span>
+                |
+                <span>
+                  <i class="fa-solid fa-location-dot"></i>
+                  Kano Town Hall
+                </span>
+              </div>
+            </div>
+            <button
+              class="btn text-white view-more"
+              style="background-color: #8a0088">
+              view more
+            </button>
+          </div>
+
+          <div class="card border-primary">
+            <img
+              class="card-img-top"
+              src="{% static 'assets/upnorth/PeterObiintheNorth.jpg' %}"
+              alt="Title" />
+            <div class="card-body2">
+              <h4 class="card-title">Free Campaign Match</h4>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                iste quibusdam sed pariatur! Magni, necessitatibus.
+              </p>
+              <div class="date">
+                <span class="ms-0">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  Tuesday, may 14, 2014
+                </span>
+                |
+                <span>
+                  <i class="fa-regular fa-clock"></i>
+                  4:00 pm
+                </span>
+                |
+                <span>
+                  <i class="fa-solid fa-location-dot"></i>
+                  Kano Town Hall
+                </span>
+              </div>
+            </div>
+            <button
+              class="btn text-white view-more"
+              style="background-color: #8a0088">
+              view more
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Blog Post -->
+    <div class="blog-post-container p-5">
+      <div class="blog mx-auto text-center">
+        <h2 style="font-family: 'Roboto'; font-weight: 500">
+          Read our <span style="color: #008a02">Latest Blog</span>
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur. Bibendum interdum praesent
+          interdum ornare phasellus <br />
+          accumsan.Lorem ipsum dolor sit amet consectetur. Bibendum in phasellus
+          accumsan.
+        </p>
+      </div>
+      <div class="scroller2-wrapper">
+        <div class="scroller2">
+          <div class="card-blog">
+            <img
+              class="card-img-top w-100"
+              src="{% static 'assets/upnorth/Rectangle 102.png' %}"
+              alt="blog Image" />
+            <div class="card-body p-4 text-start">
+              <div class="date">
+                <span class="ms-0">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  12 Jan 2014
+                </span>
+                |
+                <span>
+                  <i class="bi bi-eye"></i>
+                  322
+                </span>
+                |
+                <span>
+                  <i class="bi bi-chat"></i>
+                  32 comments
+                </span>
+              </div>
+              <h4
+                class="card-title fs-6 mt-2 mb-2"
+                style="font-family: 'Roboto'">
+                Life in the North as Government policies affect the people
+              </h4>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur. Convallis dui ornare
+                enim feugiat sed.
+              </p>
+              <hr class="w-100 mx-auto m-0" />
+            </div>
+            <div
+              class="blog-profile d-inline-flex justify-content-between align-items-center w-100">
+              <div
+                class="cd d-flex justify-content-around align-items-center gap-2 ms-4">
+                <img src="{% static 'assets/upnorth/Ellipse 15.png' %}" alt="" style="border-radius: 50%" />
+                <h6 class="fw-bold" style="font-family: 'Roboto'">
+                  Da'Guy Hilson
+                </h6>
+              </div>
+              <div class="cc2 d-flex justify-content-between gap-4 me-4">
+                <i class="bi bi-share" style="color: #8a0088"></i>
+                <i class="bi bi-bookmark" style="color: #8a0088"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-blog">
+            <img
+              class="card-img-top"
+              src="{% static 'assets/upnorth/Rectangle 102(1).png' %}"
+              alt="blog Image" />
+            <div class="card-body p-4 text-start">
+              <div class="date">
+                <span class="ms-0">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  12 Jan 2014
+                </span>
+                |
+                <span>
+                  <i class="bi bi-eye"></i>
+                  322
+                </span>
+                |
+                <span>
+                  <i class="bi bi-chat"></i>
+                  32 comments
+                </span>
+              </div>
+              <h4
+                class="card-title fs-6 mt-2 mb-2"
+                style="font-family: 'Roboto'">
+                Life in the North as Government policies affect the people
+              </h4>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur. Convallis dui ornare
+                enim feugiat sed.
+              </p>
+              <hr class="w-100 mx-auto m-0" />
+            </div>
+            <div
+              class="blog-profile d-inline-flex justify-content-between align-items-center w-100">
+              <div
+                class="cd d-flex justify-content-around align-items-center gap-2 ms-4">
+                <img src="{% static 'assets/upnorth/Ellipse 15.png' %}" alt="" style="border-radius: 50%" />
+                <h6 class="fw-bold" style="font-family: 'Roboto'">
+                  Da'Guy Hilson
+                </h6>
+              </div>
+              <div class="cc2 d-flex justify-content-between gap-4 me-4">
+                <i class="bi bi-share" style="color: #8a0088"></i>
+                <i class="bi bi-bookmark" style="color: #8a0088"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-blog">
+            <img
+              class="card-img-top"
+              src="{% static 'assets/upnorth/Rectangle 102(2).png' %}"
+              alt="blog Image" />
+            <div class="card-body p-4 text-start">
+              <div class="date">
+                <span class="ms-0">
+                  <i class="fa-regular fa-calendar-days"></i>
+                  12 Jan 2014
+                </span>
+                |
+                <span>
+                  <i class="bi bi-eye"></i>
+                  322
+                </span>
+                |
+                <span>
+                  <i class="bi bi-chat"></i>
+                  32 comments
+                </span>
+              </div>
+              <h4
+                class="card-title fs-6 mt-2 mb-2"
+                style="font-family: 'Roboto'">
+                Life in the North as Government policies affect the people
+              </h4>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur. Convallis dui ornare
+                enim feugiat sed.
+              </p>
+              <hr class="w-100 mx-auto m-0" />
+            </div>
+            <div
+              class="blog-profile d-inline-flex justify-content-between align-items-center w-100">
+              <div
+                class="cd d-flex justify-content-around align-items-center gap-2 ms-4">
+                <img src="{% static 'assets/upnorth/Ellipse 15.png' %}" alt="" style="border-radius: 50%" />
+                <h6 class="fw-bold" style="font-family: 'Roboto'">
+                  Da'Guy Hilson
+                </h6>
+              </div>
+              <div class="cc2 d-flex justify-content-between gap-4 me-4">
+                <i class="bi bi-share" style="color: #8a0088"></i>
+                <i class="bi bi-bookmark" style="color: #8a0088"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main content ends here -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container bg-black">
+        <div class="row footer-row">
+          <div class="col-9 footer-col-one">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+              <div
+                class="brandName align-items-center d-flex justify-content-center align-items-sm-center me-0">
+                <img
+                  src="{% static 'assets/upnorth/logo-removebg-preview.png' %}"
+                  alt=""
+                  style="width: 80px" />
+              </div>
+              <div
+                class="d-flex justify-content-center align-items-sm-stretch logo-text">
+                <h6
+                  class="p-0 m-0 fw-bold"
+                  style="color: #ffff; font-size: 14px">
+                  A C T I V E
+                </h6>
+                <h6
+                  class="p-0 m-0 fw-bolder"
+                  style="color: #008a02; font-size: 18px">
+                  CITIZENS
+                </h6>
+                <h6
+                  class="p-0 m-0 fw-bold"
+                  style="color: #ffff; font-size: 14px">
+                  G R O U P
+                </h6>
+              </div>
+            </a>
+            <div class="row">
+              <div class="col d-block">
+                <h4>Site map</h4>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="#">Our Achievements</a>
+                <a href="#">Contact us</a>
+                <a href="#">About us</a>
+              </div>
+              <div class="col d-block">
+                <h4>Resources</h4>
+                <a href="#">Become a Volunteer</a>
+                <a href="#">Become an Agent</a>
+                <a href="#">Ireport</a>
+                <a href="#">Gallery</a>
+              </div>
+              <div class="col d-block">
+                <h4>About</h4>
+                <a href="#">Who we are</a>
+                <a href="#">What we do</a>
+                <a href="#">Our Goals</a>
+                <a href="#">What we stand for</a>
+              </div>
+              <div class="col d-block">
+                <h4>Events</h4>
+                <a href="#">Blogs</a>
+                <a href="#">campaign</a>
+                <a href="#">Liberty March</a>
+                <a href="#">Upcoming Events</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 footer-col-two">
+            <h4>Get in Touch</h4>
+            <div class="footer-social-icon mt-4">
+              <i class="fa-brands fa-x-twitter m-2"></i>
+              <i class="fa-brands fa-youtube m-2"></i>
+              <i class="fa-brands fa-instagram m-2"></i>
+              <i class="fa-brands fa-facebook-f m-2"></i>
+              <i class="fa-brands fa-whatsapp m-2"></i>
+            </div>
+            <p class="mt-5">Subscribe to our Email Newsletter</p>
+            <div class="input-group flex-nowrap footer-input-cont">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Enter Email Address"
+                aria-label="E-mail address"
+                aria-describedby="addon-wrapping" />
+              <span
+                class="input-group-text border-0"
+                id="subscribe"
+                style="background-color: #008a02"
+                >Subscribe</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="divider"></div>
+        </div>
+        <div class="f-tip d-flex justify-content-center align-items-center">
+          <p>
+            English
+            <span class="globe-icon"><i class="fa-solid fa-globe"></i></span>
+          </p>
+          <p>Copyright 2024 © upnorthforobi.com</p>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer ends here -->
+
+  
+{% endblock content %}

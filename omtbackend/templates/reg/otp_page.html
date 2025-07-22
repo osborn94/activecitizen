@@ -1,0 +1,134 @@
+{% extends "header/header.html" %} 
+
+{% load static %}
+
+{% block title %}otp{% endblock %}
+
+{% block content %}
+<div class="auth-main">
+  <div class="auth_div">
+    <div class="card">
+      <div class="auth_brand log-reg text-center">
+        <a class="navbar-brand" href="#">
+          <img style="width: 100px" src="{% static 'assets/images/logo-removebg-preview.png' %}" alt="Logo" />
+          {% comment %} <img style="width: 50px" src="{% static 'image/ACG-removebg-preview(1).png' %}" alt="Logo2" /> {% endcomment %}
+        </a>
+      </div>
+      <div class="body body-main px-4">
+        <p class="lead">Verify Your Email</p>
+        <p class="text-center alert alert-info">We've sent a verification code to your email. Please enter it below:</p>
+
+        <form class="form-auth-small mt-3" id="otpForm" method="POST" action="{% url 'verify_otp' %}">
+          {% csrf_token %}
+
+          <div class="form-group mb-4">
+            <input type="text" class="form-control form-control-lg text-center" name="otp" maxlength="6" placeholder="Enter 6-digit OTP" required>
+          </div>
+
+          <div class="row g-2 justify-content-center align-items-center">
+            <!-- Verify Button -->
+            <div class="col-6 col-md-5">
+              <button type="submit" class="btn btn-success btn-lg w-100">
+                <span id="btn-text">Verify OTP</span>
+                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <!-- Resend OTP Button -->
+            <div class="col-6 col-md-5">
+                <button type="submit" class="btn btn-outline-secondary btn-lg w-100" id="resendBtn" disabled>
+                  Resend OTP <span id="timer">(60s)</span>
+                </button>
+        
+            </div>
+          </div>
+        </form>
+        <div id="resendMessage" class="mt-3 text-center"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  let timeLeft = 60;
+  const resendBtn = document.getElementById("resendBtn");
+  const timer = document.getElementById("timer");
+  const messageDiv = document.getElementById("resendMessage");
+
+  // Countdown timer
+  const countdown = setInterval(() => {
+    timeLeft--;
+    timer.textContent = `(${timeLeft}s)`;
+
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      resendBtn.disabled = false;
+      timer.textContent = '';
+    }
+  }, 1000);
+
+  // Handle resend button click with AJAX
+  resendBtn.addEventListener('click', function() {
+    if (!resendBtn.disabled) {
+      // Show loading state
+      resendBtn.disabled = true;
+      resendBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+      
+      // Make AJAX request
+      fetch('{% url "resend_otp" %}', {
+        method: 'GET',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Reset timer
+        timeLeft = 60;
+        timer.textContent = `(${timeLeft}s)`;
+        
+        // Restart countdown
+        const newCountdown = setInterval(() => {
+          timeLeft--;
+          timer.textContent = `(${timeLeft}s)`;
+
+          if (timeLeft <= 0) {
+            clearInterval(newCountdown);
+            resendBtn.disabled = false;
+            timer.textContent = '';
+          }
+        }, 1000);
+        
+        // Show success message
+        if (data.success) {
+          messageDiv.innerHTML = '<div class="alert alert-success">' + data.message + '</div>';
+        } else {
+          messageDiv.innerHTML = '<div class="alert alert-danger">' + data.error + '</div>';
+          // If there was an error with cooldown, we might want to keep the button disabled
+          if (data.error === 'Please wait before requesting a new code.') {
+            // Keep button disabled for a bit longer
+            setTimeout(() => {
+              resendBtn.disabled = false;
+              resendBtn.innerHTML = 'Resend OTP';
+            }, 5000);
+          }
+        }
+        
+        // Reset button text
+        setTimeout(() => {
+          resendBtn.innerHTML = 'Resend OTP <span id="timer">(' + timeLeft + 's)</span>';
+          // Update the timer reference since we just replaced it
+          timer = document.getElementById("timer");
+        }, 1000);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        messageDiv.innerHTML = '<div class="alert alert-danger">Something went wrong. Please try again.</div>';
+        resendBtn.disabled = false;
+        resendBtn.innerHTML = 'Resend OTP';
+      });
+    }
+  });
+</script>
+{% endblock %}
+
