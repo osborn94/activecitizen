@@ -4,6 +4,8 @@ from shortuuid.django_fields import ShortUUIDField
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 import os
+from django.conf import settings
+
 
 class State(models.Model):
     name = models.CharField(max_length=100)
@@ -17,7 +19,7 @@ class LGA(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.name} ({self.state.name})"
+        return f"{self.name}"
 
 
 class Ward(models.Model):
@@ -25,24 +27,33 @@ class Ward(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.name} ({self.lga.name})"
+        return f"{self.name}"
+
 
 
 class PollingUnit(models.Model):
-    ward = models.ForeignKey(Ward, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)
+    ward = models.ForeignKey(Ward, on_delete=models.CASCADE, related_name='polling_unit')
     telegram_group_link = models.URLField(blank=True, null=True)
 
+    class Meta:
+
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'ward'], name='unique_pollingunit_per_ward')
+        ]
+
     def __str__(self):
-        return f"{self.name} ({self.ward.name})"
+        return f"{self.name}"
 
 
 ROLE_CHOICES = [
-    ('supporter', 'Supporter'),
+    ('member', 'Member'),
     ('ward_admin', 'Ward Admin'),
     ('lga_admin', 'LGA Admin'),
     ('state_admin', 'State Admin'),
     ('national_admin', 'National Admin'),
+    ('secretary', 'Secretary'),
+    ('treasurer', 'Treasurer'),
 ]
 
 STATUS_CHOICES = [
@@ -50,6 +61,11 @@ STATUS_CHOICES = [
     ('active', 'Active'),
 ]
 
+GENDER_CHOICES = (
+    ('male', 'Male'),
+    ('female', 'Female'),
+    ('Other', 'Other'),
+)
 
 class User(AbstractUser):
     id = ShortUUIDField(
@@ -66,8 +82,10 @@ class User(AbstractUser):
     create_at = models.DateTimeField(auto_now_add=True)
     email_verified = models.BooleanField(default=False)
     phone_verified = models.BooleanField(default=False)
+    # approved_at = models.DateTimeField(null=True, blank=True)
 
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='supporter')
+
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='member')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='dormant')
     state = models.ForeignKey(State, on_delete=models.SET_NULL, null=True, blank=True)
     lga = models.ForeignKey(LGA, on_delete=models.SET_NULL, null=True, blank=True)
@@ -77,6 +95,9 @@ class User(AbstractUser):
     otp = models.CharField(max_length=6, null=True, blank=True)
     otp_created_at = models.DateTimeField(null=True, blank=True)
 
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True, blank=True)
+    dob = models.DateField(null=True, blank=True)
+
     def __str__(self):
         return f"{self.fullname}"
 
@@ -84,8 +105,21 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
 
-# === Image cleanup logic ===
 
+class WardAdminNomination(models.Model):
+    target_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='nominations')
+    voter = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='votes_cast')
+    ward = models.ForeignKey('Ward', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('target_user', 'voter')  # prevent duplicate votes from same person
+
+    def __str__(self):
+        return f"{self.voter.fullname} nominated {self.target_user.fullname}"
+
+
+# === Image cleanup logic ===
 @receiver(post_delete, sender=User)
 def delete_user_image(sender, instance, **kwargs):
     if instance.image and instance.image.path and os.path.isfile(instance.image.path):

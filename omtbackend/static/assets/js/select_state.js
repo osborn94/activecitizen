@@ -1,6 +1,6 @@
  // Here is the Function to fetch JSON data from file
  async function fetchJSON() {
-    const response = await fetch('/qubes/light/assets/js/data.json');
+    const response = await fetch('/assets/js/data.json');
     const data = await response.json();
     return data;
   }

@@ -1,0 +1,1030 @@
+{% extends "header/wardAdmin_header.html" %}
+{% load static %}
+
+{% block title %}
+Member Management
+{% endblock %} 
+
+{% block content %}
+
+
+    <div class="overlay"></div>
+    <div id="wrapper">
+
+        <input type="checkbox" name="check" id="check">
+        <label for="check">
+            <i class="fa-solid fa-circle-chevron-right open-icon" id="open-icon"></i>
+            <i class="fa-solid fa-circle-chevron-left close-icon" id="close-icon"></i>
+        </label>
+
+        <div class="overlay1"></div>
+        <nav class="navbar navbar-fixed-top position-fixed top-0 px-2">
+            <div class="container-fluid">
+                <div class="navbar-left">
+                    <div class="navbar-brand">
+                        <a class="small_menu_btn" href="javascript:void(0);"><img style="width: 30px"
+                                src="{% static 'assets/upnorth/logo-removebg-preview.png' %}" alt="Logo" /></a>
+                        <a href="{% url 'ward_admin' user_hash=expected_hash %}"><span><img style="width: 50px" src="{% static 'assets/upnorth/ACG-removebg-preview(1).png' %}"
+                                    alt="" /></span></a>
+                    </div>
+                    <form id="navbar-search" class="navbar-form search-form">
+                        <input value class="form-control" placeholder="Search here..." type="text" />
+                        <button type="button" class="btn btn-default">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="navbar-right">
+                    <div id="navbar-menu">
+                        <ul class="nav navbar-nav d-flex flex-row align-items-center">
+
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+                                    <i class="fa fa-envelope"></i>
+                                    <span class="notification-dot bg-green"></span>
+                                </a>
+                                <ul class="dropdown-menu right_chat email vivify fadeIn position-absolute">
+                                    <li class="header">You have 4 New eMail</li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media">
+                                                <div class="avtar-pic w35 lbg-indigo">
+                                                    <span>FC</span>
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="name">Folisise Chosielie
+                                                        <small class="float-right">12min ago</small></span>
+                                                    <span class="message">New Messages</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media">
+                                                <img class="media-object" src="../assets/images/xs/avatar5.jpg" alt />
+                                                <div class="media-body">
+                                                    <span class="name">Louis Henry
+                                                        <small class="float-right">38min ago</small></span>
+                                                    <span class="message">Integer ante arcu, accumsan a, consectetuer
+                                                        eget,
+                                                        posuere ut, mauris.</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media">
+                                                <div class="avtar-pic w35 lbg-red">
+                                                    <span>FC</span>
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="name">James Wert
+                                                        <small class="float-right">Just now</small></span>
+                                                    <span class="message">It is a long established fact that a reader
+                                                        will
+                                                        be distracted</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media">
+                                                <div class="avtar-pic w35 lbg-green">
+                                                    <span>FC</span>
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="name">James Wert
+                                                        <small class="float-right">Just now</small></span>
+                                                    <span class="message">The point of using Lorem Ipsum is that it has
+                                                        a
+                                                        more</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media mb-0">
+                                                <img class="media-object" src="../assets/images/xs/avatar2.jpg" alt />
+                                                <div class="media-body">
+                                                    <span class="name">Debra Stewart
+                                                        <small class="float-right">2hr ago</small></span>
+                                                    <span class="message">Nullam vel sem. Nullam vel sem.</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+                                    <i class="fa fa-bell"></i>
+                                    <span class="notification-dot bg-azura"></span>
+                                </a>
+                                <ul class="dropdown-menu feeds_widget vivify fadeIn position-absolute">
+                                    <li class="header">You have 4 New Notifications</li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="feeds-left lbg-red">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+                                            <div class="feeds-body">
+                                                <h4 class="title text-danger">
+                                                    Issue Fixed
+                                                    <small class="float-right text-muted">9:10 AM</small>
+                                                </h4>
+                                                <small>WE have fix all Design bug with Responsive</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="feeds-left lbg-info">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <div class="feeds-body">
+                                                <h4 class="title text-info">
+                                                    New User
+                                                    <small class="float-right text-muted">9:15 AM</small>
+                                                </h4>
+                                                <small>I feel great! Thanks team</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="feeds-left lbg-orange">
+                                                <i class="fa fa-question-circle"></i>
+                                            </div>
+                                            <div class="feeds-body">
+                                                <h4 class="title text-warning">
+                                                    Server Warning
+                                                    <small class="float-right text-muted">9:17 AM</small>
+                                                </h4>
+                                                <small>Your connection is not private</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="feeds-left lbg-green">
+                                                <i class="fa fa-thumbs-o-up"></i>
+                                            </div>
+                                            <div class="feeds-body">
+                                                <h4 class="title text-success">
+                                                    2 New Feedback
+                                                    <small class="float-right text-muted">9:22 AM</small>
+                                                </h4>
+                                                <small>It will give a smart finishing to your site</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!-- Profile Image with Dropdown -->
+                            <div class="dropdown profile-sec">
+                                <div class="d-flex align-items-center cursor-pointer" id="profileDropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ user_image_url|default:'assets/images/logo-removebg-preview.png' }}"
+                                        alt="User Profile Image" class="rounded-circle profile-image">
+                                    <i class="fa fa-chevron-down ms-1 text-secondary small"></i>
+                                </div>
+
+                                <ul class="dropdown-menu dropdown-menu-end position-absolute"
+                                    aria-labelledby="profileDropdown">
+                                    <li>
+                                        <h3 class="dropdown-header fs-5 fw-bold text-success">{{ user_name }}</h3>
+                                        <p class="dropdown-header text-secondary">{{ user_email }}</p>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">My Account</a></li>
+
+                                    {% comment %} Change password to be worked on later {% endcomment %}
+                                    <li><a class="dropdown-item" href="#">Change Password</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="text-danger log-out">
+                                        <form
+                                          method="post"
+                                          action="{% url 'logout' %}"
+                                          style="margin: 0"
+                                        >
+                                          {% csrf_token %}
+                                          <button
+                                          type="submit"
+                                          class="dropdown-item text-danger bg-transparent border-0 w-100 text-start"
+                                          >
+                                          <i class="fas fa-power-off me-2"></i> Logout
+                                          </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div id="left-sidebar" class="sidebar left-sidebar py-4">
+        
+            <div class="sidebar_list">
+                <div class="tab-content" id="main-menu">
+                    <div class="tab-pane active" id="Home-icon">
+                        <nav class="sidebar-nav sidebar-scroll">
+                            <ul class="metismenu">
+                                
+                                <li class="">
+                                    <a href="{% url 'ward_admin' user_hash=expected_hash %}"><i class="icon-speedometer"></i><span>Dashboard</span></a>
+                                </li>
+                                <li class="header mt-1"></li>
+
+                                <li class="active">
+                                    <a href="{% url 'mem_manage' user_hash=expected_hash %}" class="d-flex align-items-center">
+                                        <i class="fa-regular fa-user"></i>
+                                        <span>Member Management</span>
+                                    </a>
+                                </li>
+
+                                {% comment %} <li class="">
+                                    <a href="{% url 'pu_agent' user_hash=expected_hash %}">
+                                        <i class="fa-regular fa-circle-user"></i>
+                                        <span>PU Agents Management</span>
+                                    </a>
+                                </li> {% endcomment %}
+
+                                <li class="">
+                                    <a href="#">
+                                    {% comment %} <a href="{% url 'pu_manage' user_hash=expected_hash %}"> {% endcomment %}
+                                        <i class="fa-regular fa-map"></i>
+                                        <span>PU Management</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{% url 'ward_admin_profile' user_hash=expected_hash %}">
+                                        <i class="icon-user"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a href="page-profile.html">
+                                        <i class="icon-user"></i>
+                                        <span>Profile</span></a>
+                                </li> -->
+                                <li>
+                                    <a href="ireport.html">
+                                        <i class="icon-user"></i>
+                                        <span>iReport</span></a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="main-content" class="main-container">
+
+            <!-- PAGE DESCRIPTION HEADER SECTION -->
+            <div class=" block-header py-4">
+                <div class="row clearfix d-flex justify-content-between mt-3">
+                    <div class="col mb-3">
+                        <h1 class="text-sm-nowrap fw-bold">Members Management</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mt-3">
+                                <li class="breadcrumb-item">
+                                    <a href="#"><i class="fa fa-cube" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    Member
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="text-left mt-0 mt-sm-0 col-sm-auto">
+                        <p class="mb-0">
+                            <span>Role:</span>
+                            <span
+                                class="badge rounded-pill fw-medium bg-success-subtle text-dark p-2 border-0 me-0">Ward
+                                Coordinator</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <!-- <div class="d-flex add-new-member-sec"> -->
+                    <p class="mb-0 text-nowrap ">Add New Members</p>
+                    <!-- <button class="add-member-btn text-nowrap" data-bs-toggle="modal" data-bs-target="#addMemberModal">Add New Member</button> -->
+                         <!-- Button trigger -->
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrationModal">Register New Member</button>
+
+                    <!-- Include the modal -->
+                    {% include "reg/registration_modal.html" %}
+
+                    
+                </div>
+
+                <!-- Pending Members List Table Section -->
+                <div class="row clearfix mt-3">
+                    <div class="col-12 col-sm-12">
+                        <div class="card">
+                            <div class="header d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                <h2 class="fw-bold text-nowrap">Pending Members</h2>
+                                <span class="d-flex flex-nowrap gap-1 align-items-center">
+                                    <span>Total:</span>
+                                    <strong class="border px-3 py-1">{{ pending_agents }}</strong>
+                                </span>
+                                <form id="table-searchbar" class="navbar-form search-form d-flex">
+                                    <input value class="form-control" placeholder="Search name..." type="text" />
+                                    <button type="button" class="btn btn-default search-btn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="table-responsive table1">
+
+                                <table class="table table-custom spacing5 mb-0 px-3">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Full Name</th>
+                                            <th>Email Address</th>
+                                            <th>Date of Birth</th>
+                                            <th>Gender</th>
+                                            <th>Polling Unit</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pendingMembers">
+                                         {% for member in pending_members %}
+                                            {% if member.role != "ward_admin" %}
+
+                                        <tr>
+                                            <td>{{ forloop.counter|stringformat:"02d" }}</td>
+                                            <td>{{ member.fullname }}</td>
+                                            <td>{{ member.email }}</td>
+                                            <td>{{ member.dob }}</td>
+                                            <td>{{ member.gender }}</td>
+                                            <td>{{ member.polling_unit }}</td>
+                                            
+                                            <td class="dropdown">
+                                                <span class="" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                </span>
+
+                                                <ul class="dropdown-menu position-absolute end-0" aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                            data-bs-target="#pendingMemberDetailsModal{{ member.id }}" href="#">View</a></li>
+                                                            
+                                                    <li><a class="dropdown-item approve" href="#">Approve</a></li>
+                                                    <li><a class="dropdown-item reject text-danger" href="#">Reject</a></li>
+                                                </ul>
+
+                                            </td>
+                                        </tr>
+                                         {% endif %}
+                                        {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <!-- Table Pagination -->
+                            <nav aria-label="Page navigation example" class="mt-3 px-3">
+                                <ul class="pagination">
+                                    <li class="page-item active">
+                                        <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="javascript:void(0);">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Approved Members List Table Section -->
+                <div class="row clearfix mt-5">
+                    <div class="col-12 col-sm-12">
+                        <div class="card">
+                            
+                            <div class="header d-flex justify-content-between align-items-center gap-3 flex-wrap">
+                                <h2 class="fw-bold text-nowrap">Approved Members</h2>
+                                <span class="d-flex flex-nowrap gap-1 align-items-center">
+                                    <span>Total:</span>
+                                    <strong class="border px-3 py-1">{{ active_agents }}</strong>
+                                </span>
+                                <form id="table-searchbar2" class="navbar-form search-form d-flex">
+                                    <input value class="form-control" placeholder="Search name..." type="text" />
+                                    <button type="button" class="btn btn-default search-btn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="table-responsive table1">
+
+                                <table class="table table-custom spacing5 mb-0 px-3">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>ID No</th>
+                                            <th>Full Name</th>
+                                            <th>Email Address</th>
+                                            <th>Phone Number</th>
+                                            <th>Date of Birth</th>
+                                            <th>Gender</th>
+                                            <th>Polling Unit</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="approvedMembers">
+                                          {% for member in approved_members %}
+                                            {% if member.role != "ward_admin" %}
+                                        <tr>
+                                            <td>{{ forloop.counter|stringformat:"02d" }}</td>
+                                            <td>{{ member.id }}</td>
+                                            <td>{{ member.fullname }}</td>
+                                            <td>{{ member.email }}</td>
+                                            <td>{{ member.phone }}</td>
+                                            <td>{{ member.dob }}</td>
+                                            <td>{{ member.gender }}</td>
+                                            <td>{{ member.polling_unit }}</td>
+                                            <td>{{ member.status }}</td>
+                                            
+                                            
+                                            <td class="dropdown">
+                                                <span class="" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                </span>
+
+                                                <ul class="dropdown-menu position-absolute end-0" aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                            data-bs-target="#memberDetailsModal{{ member.id }}" href="#">View</a></li>
+
+                                                    <li><a class="dropdown-item edit" data-bs-toggle="modal" data-bs-target="#editMemberModal" href="#">Edit</a></li>
+                                                    <li><a class="dropdown-item suspend text-warning" href="#">Suspend</a></li>
+                                                    <!-- <li><a class="dropdown-item remove text-danger" href="#">Remove</a></li> -->
+                                                </ul>
+
+                                            </td>
+                                        </tr>
+                                          {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                    
+
+                                </table>
+
+                            </div>
+
+                            <!-- Table Pagination -->
+                            <nav aria-label="Page navigation example" class="mt-3 px-3">
+                                <ul class="pagination">
+                                    <li class="page-item active">
+                                        <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="javascript:void(0);">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Add Member Modal -->
+            <div class="modal fade" id="addMemberModal" tabindex="-1" aria-labelledby="addMemberModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addMemberModalLabel">Add New Member</h5>
+                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Add Member Form -->
+                            <form action="#" method="post">
+
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName"
+                                        placeholder="Enter Full Name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="userName" name="userName"
+                                        placeholder="Enter UserName">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dob" class="form-label">Date Of Birth</label>
+                                    <input type="date" class="form-control" id="dob" name="dob" placeholder="Enter Date Of Birth">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" id="gender" name="gender">
+                                        <option value="male">Male</option>
+                                        
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <select class="form-control round" id="stateSelect" name="state" required>
+                                        <option value="">Select State</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-control round" id="lgaSelect" name="lga" required>
+                                        <option value="">Select LGA</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-control round" id="wardSelect" name="ward" required>
+                                        <option value="">Select ward</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-control round" id="puSelect" name="pollingUnit" required>
+                                        <option value="">Select Polling Unit</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                <input type="password" class="form-control round" id="password" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="mb-3">
+                                <input type="password" class="form-control round" id="confirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+                                </div>
+
+                                <!-- <div class="mb-3">
+                                    <label for="pollingUnit" class="form-label">Polling Unit</label>
+                                    <select class="form-select" id="pollingUnit" name="pollingUnit">
+                                        <option value="pu1">Polling Unit 1</option>
+                                        
+                                        <option value="pu2">Polling Unit 2</option>
+                                        
+                                        <option value="pu3">Polling Unit 3</option>
+                                        
+                                    </select>
+                                </div> -->
+                                <div class="mb-3">
+                                    <label for="profileImage" class="form-label">Profile Image URL</label>
+                                    <input type="text" class="form-control" id="profileImage" name="profileImage"
+                                    placeholder="Enter Profile Image URL">
+                                </div>
+                               
+                                <button type="submit" class="btn w-100">Add Member</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Edit Member Modal -->
+            <div class="modal fade" id="editMemberModal" tabindex="-1" aria-labelledby="editMemberModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editMemberModalLabel">Edit Member Details</h5>
+                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <!-- Edit Member Details Form -->
+                            <form action="#" method="post">
+                               
+                                <div class="mb-3">
+                                    <label for="editIDNo" class="form-label">ID No</label>
+                                    <input type="text" class="form-control" id="editIDNo" name="editIDNo" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editProfileImage" class="form-label">Profile Image URL</label>
+                                    <input type="text" class="form-control" id="editProfileImage" name="editProfileImage">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editFullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="editFullName" name="editFullName">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editEmail" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="editEmail" name="editEmail">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editPhone" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" id="editPhone" name="editPhone">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editDob" class="form-label">Date Of Birth</label>
+                                    <input type="date" class="form-control" id="editDob" name="editDob">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editGender" class="form-label">Gender</label>
+                                    <select class="form-select" id="editGender" name="editGender">
+                                        <option value="male">Male</option>
+                                
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editPollingUnit" class="form-label">Polling Unit</label>
+                                    <select class="form-select" id="editPollingUnit" name="editPolligUnit">
+                                        <option value="pu1">Polling Unit 1</option>
+            
+                                        <option value="pu2">Polling Unit 2</option>
+            
+                                        <option value="pu3">Polling Unit 3</option>
+            
+                                    </select>
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="editStatus" class="form-label">Status</label>
+                                    <select class="form-select" id="editStatus" name="editStatus">
+                                        <option value="active">Active</option>
+            
+                                        <option value="inactive">Inactive</option>
+            
+                                        <option value="suspended">Suspended</option>
+            
+                                    </select>
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="editRole" class="form-label">Role</label>
+                                    <select class="form-select" id="editRole" name="editRole">
+                                        <option value="member">Member</option>
+            
+                                        <option value="ward-leader">Ward Leader</option>
+            
+                                        <option value="secretary">Secretary</option>
+
+                                        <option value="treasurer">Treasurer</option>
+            
+                                    </select>
+                                </div>
+            
+                                <button type="submit" class="btn w-100">Save Member</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Pending Member Details Modal -->
+             {% for mem in pending_members %}
+            <div class="modal fade" id="pendingMemberDetailsModal{{ mem.id }}" tabindex="-1" aria-labelledby="pendingMemberDetailsModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-container">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="pendingMemberDetailsModalLabel">Member Profile</h5>
+                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-0">
+            
+                            <!-- Member Details Section -->
+                            <div
+                                class="row member-details d-flex flex-row gap-0 justify-content-between align-items-center rounded-4">
+                                <div class="col-sm-3 member-profile">
+                                    <img src="{{ mem.image.url }}"
+                                        alt="Member Profile Image" class="img-fluid member-image object-fit-cover rounded-4 mb-4">
+            
+                                </div>
+                                <div class="col-sm-9 text-right-sec">
+            
+                                    <div class="top-sec d-flex gap-2 justify-content-between align-items-center mb-3 flex-wrap">
+                                        <h5 class="member-name fw-bold mb-0 text-nowrap">{{ mem.fullname|title }}</h5>
+                                        <p class="d-flex align-items-center mb-0">Status: <span
+                                                class="ms-2 badge rounded-5 fw-medium bg-warning-subtle text-dark px-3 py-2 border-0">Pending</span>
+                                        </p>
+                                    </div>
+            
+                                    <div class="member-info row">
+                                        <div class="col-md-6">
+                                            <p class="member-email"><span class="fw-bold">Email:</span> {{ mem.email }}</p>
+                                            <p class="member-phone"><span class="fw-bold">Phone:</span> {{ mem.phone }}</p>
+                                            <p class="member-gender"><span class="fw-bold">Gender:</span> {{ mem.gender }}</p>
+                                            <p class="member-dob"><span class="fw-bold">DOB:</span> {{ mem.dob }}</p>
+                                        </div>
+            
+                                        <div class="col-md-6">
+                                            <p class="member-state"><span class="fw-bold">State:</span> {{ mem.state }}</p>
+                                            <p class="member-lga"><span class="fw-bold">L.G.A:</span> {{ mem.lga }}</p>
+                                            <p class="member-ward"><span class="fw-bold">Ward:</span> {{ mem.ward }}</p>
+                                            <p class="member-ward"><span class="fw-bold">P Unit:</span> {{ mem.polling_unit }}</p>
+                                        </div>
+                                    </div>
+            
+                                    <div class="sec-btns d-flex flex-row gap-3 mt-2 flex-wrap">
+                                        <!-- <button
+                                            type="button"
+                                            class="btn bg-primary-subtle text-primary fw-medium"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editMemberModal{{ mem.id }}"
+                                        >
+                                            <span class="me-1"
+                                            ><i class="fa-regular fa-pen-to-square"></i
+                                            ></span>
+                                            Edit
+                                        </button> -->
+                                        <button type="button" class="btn bg-secondary-subtle text-secondary fw-medium">
+                                            <span class="me-1">
+                                                <i class="fa-regular fa-envelope"></i>
+                                            </span> Send Mail
+                                        </button>
+                                        <button type="submit" class="btn bg-success-subtle text-dark fw-medium" data-bs-toggle="modal" data-bs-target="#confirmApprovalModal{{ mem.id }}">
+                                            <span class="me-1">
+                                                <i class="fa-regular fa-circle-check"></i>
+                                            </span> Approve
+                                        </button>
+                                         <button type="submit" class="btn bg-danger-subtle text-danger  fw-medium" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ mem.id }}">
+                                            <span class="me-1"><i class="fa-regular fa-trash-can"></i></span> Delete
+                                         </button>
+                                    </div>
+            
+                                </div>
+            
+                            </div>
+                            <!-- Member Details Section End -->
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="confirmDeleteModal{{ mem.id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ mem.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="confirmDeleteModalLabel{{ mem.id }}">Confirm Deletion</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete <strong>{{ mem.fullname|title }}</strong>?<br>This action cannot be undone.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form method="POST" action="{% url 'mem_manage' user_hash=expected_hash %}" >
+                        {% csrf_token %}
+                        <input type="hidden" name="member_id" value="{{ mem.id }}">
+                        <input type="hidden" name="action" value="delete_member">
+                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Approval Confirmation Modal -->
+                <div class="modal fade" id="confirmApprovalModal{{ mem.id }}" tabindex="-1" aria-labelledby="confirmApprovalModalLabel{{ mem.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title" id="confirmApprovalModalLabel{{ mem.id }}">Confirm Approval</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to approve <strong>{{ mem.fullname|title }}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form method="POST" action="{% url 'mem_manage' user_hash=expected_hash %}" id="memForm">
+                        {% csrf_token %}
+                        <input type="hidden" name="member_id" value="{{ mem.id }}">
+                        <input type="hidden" name="action" value="approve_member">
+                        <button type="submit" id="btn-mem" class="btn btn-danger">Yes, Approve</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+            {% endfor %}
+
+            <!-- Approved Member Details Modal -->
+             {% for mem in approved_members %}
+            <div class="modal fade" id="memberDetailsModal{{ mem.id }}" tabindex="-1" aria-labelledby="memberDetailsModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-container">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="memberDetailsModalLabel">Member Profile</h5>
+                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-0">
+            
+                            <!-- Member Details Section -->
+                            <div
+                                class="row member-details d-flex flex-row gap-0 justify-content-between align-items-center rounded-4">
+                                <div class="col-sm-3 member-profile">
+                                    <img src="{{ mem.image.url }}"
+                                        alt="Member Profile Image" class="img-fluid member-image object-fit-cover rounded-4 mb-4">
+            
+                                </div>
+                                <div class="col-sm-9 text-right-sec">
+            
+                                    <div class="top-sec d-flex gap-2 justify-content-between align-items-center mb-3 flex-wrap">
+                                        <h5 class="member-name fw-bold mb-0 text-nowrap">{{ mem.fullname|title }}</h5>
+                                        <p class="d-flex align-items-center mb-0">Status: <span
+                                                class="ms-2 badge rounded-5 fw-medium bg-success-subtle text-dark px-3 py-2 border-0">{{ mem.status }}</span>
+                                        </p>
+                                    </div>
+            
+                                    <div class="member-info row">
+                                        <div class="col-md-6">
+                                            <p class="member-id"><span class="fw-bold">ID No:</span> {{ mem.id }}</p>
+                                            <p class="member-email"><span class="fw-bold">Email:</span> {{ mem.email }}</p>
+                                            <p class="member-phone"><span class="fw-bold">Phone:</span> {{ mem.phone }}</p>
+                                            <p class="member-gender"><span class="fw-bold">Gender:</span> {{ mem.gender }}</p>
+                                            <p class="member-dob"><span class="fw-bold">DOB:</span> {{ mem.dob }}</p>
+                                        </div>
+            
+                                        <div class="col-md-6">
+                                            <p class="member-role"><span class="fw-bold">Role:</span> Member</p>
+                                            <p class="member-state"><span class="fw-bold">State:</span> {{ mem.state }}</p>
+                                            <p class="member-lga"><span class="fw-bold">L.G.A:</span> {{ mem.lga }}</p>
+                                            <p class="member-ward"><span class="fw-bold">Ward:</span> {{ mem.ward }}</p>
+                                            <p class="member-ward"><span class="fw-bold">P Unit:</span> {{ mem.polling_unit }}</p>
+                                        </div>
+                                    </div>
+            
+                                    <div class="sec-btns d-flex flex-row gap-3 mt-2 flex-wrap">
+                                        <button
+                                          type="button"
+                                          class="btn bg-primary-subtle text-primary fw-medium"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#editMemberModal{{ mem.id }}"
+                                        >
+                                          <span class="me-1"
+                                          ><i class="fa-regular fa-pen-to-square"></i
+                                          ></span>
+                                          Edit
+                                        </button>
+                                        <button type="button" class="btn bg-secondary-subtle text-secondary fw-medium">
+                                            <span class="me-1">
+                                                <i class="fa-regular fa-envelope"></i>
+                                            </span> Send Mail
+                                        </button>
+                                        <button type="button" class="btn bg-warning-subtle text-dark fw-medium">
+                                            <span class="me-1">
+                                                <i class="fa-solid fa-strikethrough"></i>
+                                            </span> Suspend
+                                        </button>
+                                        <button type="submit" class="btn bg-danger-subtle text-danger       fw-medium" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ mem.id }}">
+                                        <span class="me-1"><i class="fa-regular fa-trash-can"></i></span> Delete
+                                        </button>
+                                    </div>
+            
+                                </div>
+            
+                            </div>
+                            <!-- Member Details Section End -->
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                            <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="confirmDeleteModal{{ mem.id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ mem.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="confirmDeleteModalLabel{{ mem.id }}">Confirm Deletion</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete <strong>{{ mem.fullname|title }}</strong>?<br>This action cannot be undone.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form method="POST" action="{% url 'mem_manage' user_hash=expected_hash %}" >
+                        {% csrf_token %}
+                        <input type="hidden" name="member_id" value="{{ mem.id }}">
+                        <input type="hidden" name="action" value="delete_member">
+                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Edit member details modal -->
+                <div
+                class="modal fade"
+                id="editMemberModal{{ mem.id }}"
+                tabindex="-1"
+                aria-labelledby="editMemberModalLabel{{ mem.id }}"
+                aria-hidden="true"
+                >
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                         <!-- Logo -->
+                        <div class="auth_brand text-center mb-3">
+                            <a class="navbar-brand" href="#">
+                                <img style="width: 100px" src="{% static 'assets/images/logo-removebg-preview.png' %}" alt="" />
+                            
+                            </a>
+                        </div>
+                    <form method="POST" action="{% url 'mem_manage' user_hash=expected_hash %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="member_id" value="{{ mem.id }}">
+                        <input type="hidden" name="action" value="edit_member">
+                        
+                        <div class="mb-3">
+                        <label for="fullname{{ mem.id }}" class="form-label">Full Name</label>
+                        <input type="text" name="fullname" id="fullname{{ mem.id }}" class="form-control" value="{{ mem.fullname }}">
+                        </div>
+                        <!-- <div class="mb-3">
+                        <label for="username{{ mem.id }}" class="form-label">Username</label>
+                        <input type="text" name="username" id="username{{ mem.id }}" class="form-control" value="{{ mem.username }}">
+                        </div> -->
+                        <div class="mb-3">
+                        <label for="email{{ mem.id }}" class="form-label">Email</label>
+                        <input type="email" name="email" id="email{{ mem.id }}" class="form-control" value="{{ mem.email }}">
+                        </div>
+                        <div class="mb-3">
+                        <label for="phone{{ mem.id }}" class="form-label">Phone</label>
+                        <input type="text" name="phone" id="phone{{ mem.id }}" class="form-control" value="{{ mem.phone }}">
+                        </div>
+
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+
+                    </div>
+                </div>
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    {% endblock content %}

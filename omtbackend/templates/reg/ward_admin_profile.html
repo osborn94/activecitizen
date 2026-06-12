@@ -1,0 +1,893 @@
+{% extends "header/wardAdmin_header.html" %} 
+{% load static %} 
+{% block title %}
+Ward Admin Profile 
+{% endblock %} 
+
+{% block content %}
+
+<div class="overlay"></div>
+<div id="wrapper">
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-left">
+        <div class="navbar-brand">
+
+          <a class="small_menu_btn" href="javascript:void(0);"
+            ><img
+              style="width: 30px"
+              src="{% static 'assets/upnorth/logo-removebg-preview.png' %}"
+              alt="Logo"
+          /></a>
+          <a href="{% url 'ward_admin_profile' user_hash=expected_hash %}"
+            ><span
+              ><img
+                style="width: 50px"
+                src="{% static 'assets/upnorth/ACG-removebg-preview(1).png' %}"
+                alt="" /></span
+          ></a>
+        </div>
+
+        <form id="navbar-search" class="navbar-form search-form">
+          <input
+            value
+            class="form-control"
+            placeholder="Search here..."
+            type="text"
+          />
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+
+      
+      <div class="navbar-right">
+        <div id="navbar-menu">
+
+          <ul class="nav navbar-nav d-flex flex-row align-items-center">
+           
+
+            <li class="text-danger">
+            <form method="post" action="{% url 'logout' %}" style="margin: 0;">
+                {% csrf_token %}
+                <button type="submit" class="icon-menu btn btn-link text-danger p-0" style="text-decoration: none;">
+                <i class="fa fa-power-off"></i>
+                
+                </button>
+            </form>
+            </li>
+
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div id="left-sidebar" class="sidebar">
+    <div class="sidebar_icon">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" href="page-search-results.html"
+            ><i class="fa fa-search"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#Home-icon"
+            ><i class="fa fa-dashboard"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#Envelope-icon"
+            ><i class="fa fa-envelope"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#Components-icon"
+            ><i class="icon-diamond"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#Profile-icon"
+            ><i class="fa fa-user"></i
+          ></a>
+          <a class="nav-link" data-toggle="tab" href="#Setting-icon"
+            ><i class="fa fa-cog"></i
+          ></a>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="sidebar_list">
+      <div class="tab-content" id="main-menu">
+        <div class="tab-pane active" id="Home-icon">
+          <nav class="sidebar-nav sidebar-scroll">
+            <ul class="metismenu">
+              <li>
+                <a href="{% url 'ward_admin' user_hash=expected_hash %}"
+                  ><i class="fa fa-tachometer"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="header">Ready App</li>
+              <li>
+                <a href="{% url 'mem_manage' user_hash=expected_hash %}"
+                  ><i class="icon-paper-plane"></i
+                  ><span>Member Management</span></a
+                >
+
+              </li>
+
+              <li>
+                <a href="#">
+                {% comment %} <a href="{% url 'ward_admin_profile' user_hash=expected_hash %}"
+                  > {% endcomment %}
+                  <i class="fa-regular fa-circle-user"></i><span>PU Management</span></a
+                >
+              </li>
+
+              <li>
+                <a href="{% url 'ward_admin_profile' user_hash=expected_hash %}"
+                  ><i class="fas fa-user"></i><span>My Profile</span></a
+                >
+              </li>
+
+
+              <li>
+                <a href="ireport.html"
+                  ><i class="fas fa-file-alt"></i><span>iReport</span></a
+                >
+              </li>
+
+
+            
+            </ul>
+          </nav>
+
+        </div>
+        <div class="tab-pane" id="Profile-icon">
+          <nav class="sidebar-nav sidebar-scroll">
+            <div class="user-detail">
+              <div class="text-center mb-3">
+                <img
+                  class="img-thumbnail rounded-circle"
+                  src="../assets/images/sm/avatar1.jpg"
+                  alt
+                />
+                <h6 class="mt-3 mb-0">Michelle Green</h6>
+                <div class="text-center text-muted">Manager</div>
+                <hr />
+                <small class="text-muted">Address: </small>
+                <p>San Francisco</p>
+                <small class="text-muted">Email address: </small>
+                <p>
+                  <a
+                    href="https://nsdbytes.com/cdn-cgi/l/email-protection"
+                    class="__cf_email__"
+                    data-cfemail="eb87849e82989b828e99888eab8e938a869b878ec5888486"
+                    >[email&#160;protected]</a
+                  >
+                </p>
+                <small class="text-muted">Mobile: </small>
+                <p>+ 202-222-2121</p>
+                <a
+                  href="page-profile.html"
+                  class="btn btn-block btn-success mb-2"
+                  title
+                  >View Profile</a
+                >
+                <a
+                  href="https://nsdbytes.com/template/qubes/documentation/index.html"
+                  class="btn btn-block btn-info"
+                  >Documentation</a
+                >
+              </div>
+              <hr />
+              <div class="card-text">
+                <div class="mt-0">
+                  <small class="float-right text-muted">10/200 GB</small>
+                  <span>Memory</span>
+                  <div class="progress progress-xxs">
+                    <div style="width: 60%" class="progress-bar"></div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <small class="float-right text-muted">40 MB</small>
+                  <span>Bandwidth</span>
+                  <div class="progress progress-xxs">
+                    <div style="width: 50%" class="progress-bar"></div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <small class="float-right text-muted">73%</small>
+                  <span>Activity</span>
+                  <div class="progress progress-xxs">
+                    <div style="width: 40%" class="progress-bar"></div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <small class="float-right text-muted">400 GB</small>
+                  <span>FTP</span>
+                  <div class="progress progress-xxs mb-0">
+                    <div
+                      style="width: 80%"
+                      class="progress-bar bg-danger"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="tab-pane" id="Envelope-icon">
+          <nav class="sidebar-nav sidebar-scroll">
+            <a href="app-compose.html" class="btn btn-danger btn-block mb-3"
+              >Compose</a
+            >
+            <ul class="metismenu">
+              <li class="active">
+                <a href="app-inbox.html"
+                  ><i class="icon-drawer"></i><span>Inbox</span
+                  ><span class="badge badge-primary float-right">6</span></a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0);"
+                  ><i class="icon-cursor"></i><span>Sent</span
+                  ><span class="badge badge-warning float-right">6</span></a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0);"
+                  ><i class="icon-envelope-open"></i><span>Draft</span></a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0);"
+                  ><i class="icon-action-redo"></i><span>Outbox</span></a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0);"
+                  ><i class="icon-trash"></i><span>Trash</span></a
+                >
+              </li>
+              <li class="header">Labels</li>
+              <li>
+                <a href="javascript:void(0);"
+                  ><i class="fa fa-circle-o text-danger"></i
+                  ><span>Workshop</span></a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0);"
+                  ><i class="fa fa-circle-o text-info"></i
+                  ><span>Private</span></a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0);"
+                  ><i class="fa fa-circle-o text-dark"></i
+                  ><span>Paypal</span></a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0);"
+                  ><i class="fa fa-circle-o text-primary"></i
+                  ><span>Comapny</span></a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="tab-pane" id="Components-icon">
+          <nav class="sidebar-nav sidebar-scroll">
+            <ul class="metismenu">
+              <li>
+                <a href="ui-helper-class.html"
+                  ><i class="icon-info"></i>Helper Classes</a
+                >
+              </li>
+              <li>
+                <a href="ui-bootstrap.html"
+                  ><i class="icon-key"></i>Bootstrap UI</a
+                >
+              </li>
+              <li>
+                <a href="ui-typography.html"
+                  ><i class="icon-target"></i>Typography</a
+                >
+              </li>
+              <li>
+                <a href="ui-colors.html"><i class="icon-drop"></i>Colors</a>
+              </li>
+              <li>
+                <a href="ui-buttons.html"><i class="icon-tag"></i>Buttons</a>
+              </li>
+              <li>
+                <a href="ui-tabs.html"><i class="icon-tag"></i>Tabs</a>
+              </li>
+              <li>
+                <a href="ui-progressbars.html"
+                  ><i class="icon-graph"></i>Progress Bars</a
+                >
+              </li>
+              <li>
+                <a href="ui-modals.html"><i class="icon-tag"></i>Modals</a>
+              </li>
+              <li>
+                <a href="ui-notifications.html"
+                  ><i class="icon-question"></i>Notifications</a
+                >
+              </li>
+              <li>
+                <a href="ui-dialogs.html"><i class="icon-tag"></i>Dialogs</a>
+              </li>
+              <li>
+                <a href="ui-list-group.html"
+                  ><i class="icon-list"></i>List Group</a
+                >
+              </li>
+              <li>
+                <a href="ui-media-object.html"
+                  ><i class="icon-tag"></i>Media Object</a
+                >
+              </li>
+              <li>
+                <a href="ui-nestable.html"><i class="icon-loop"></i>Nestable</a>
+              </li>
+              <li>
+                <a href="ui-range-sliders.html"
+                  ><i class="icon-equalizer"></i>Range Sliders</a
+                >
+              </li>
+              <li>
+                <a href="#Charts" class="has-arrow"
+                  ><i class="icon-bar-chart"></i><span>Charts</span></a
+                >
+                <ul>
+                  <li><a href="chart-c3.html">C3 Charts</a></li>
+                  <li><a href="chart-chartjs.html">ChartJS</a></li>
+                  <li><a href="chart-morris.html">Morris Charts</a></li>
+                  <li><a href="chart-flot.html">Flot Charts</a></li>
+                  <li>
+                    <a href="chart-sparkline.html">Sparkline Chart</a>
+                  </li>
+                  <li><a href="chart-jquery-knob.html">Jquery Knob</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#Forms" class="has-arrow"
+                  ><i class="icon-layers"></i><span>Forms</span></a
+                >
+                <ul>
+                  <li><a href="forms-basic.html">Basic Elements</a></li>
+                  <li>
+                    <a href="forms-advanced.html">Advanced Elements</a>
+                  </li>
+                  <li>
+                    <a href="forms-validation.html">Form Validation</a>
+                  </li>
+                  <li><a href="forms-wizard.html">Form Wizard</a></li>
+                  <li><a href="forms-summernote.html">Summernote</a></li>
+                  <li>
+                    <a href="forms-dragdropupload.html"
+                      >Drag &amp; Drop Upload</a
+                    >
+                  </li>
+                  <li><a href="forms-editors.html">CKEditor</a></li>
+                  <li><a href="forms-markdown.html">Markdown</a></li>
+                  <li><a href="forms-cropping.html">Image Cropping</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#Tables" class="has-arrow"
+                  ><i class="icon-film"></i><span>Tables</span></a
+                >
+                <ul>
+                  <li><a href="table-normal.html">Normal Tables</a></li>
+                  <li><a href="table-color.html">Tables Color</a></li>
+                  <li>
+                    <a href="table-jquery-datatable.html">Jquery Datatables</a>
+                  </li>
+                  <li><a href="table-editable.html">Editable Tables</a></li>
+                  <li><a href="table-filter.html">Table Filter</a></li>
+                  <li><a href="table-dragger.html">Table dragger</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="tab-pane" id="Setting-icon">
+          <nav class="sidebar-nav sidebar-scroll">
+            <p>General Settings</p>
+            <ul class="setting-list list-unstyled">
+              <li>
+                <label class="fancy-checkbox">
+                  <input type="checkbox" name="checkbox" />
+                  <span>Report Panel Usag</span>
+                </label>
+              </li>
+              <li>
+                <label class="fancy-checkbox">
+                  <input type="checkbox" name="checkbox" checked />
+                  <span>Email Redirect</span>
+                </label>
+              </li>
+              <li>
+                <label class="fancy-checkbox">
+                  <input type="checkbox" name="checkbox" checked />
+                  <span>Notifications</span>
+                </label>
+              </li>
+              <li>
+                <label class="fancy-checkbox">
+                  <input type="checkbox" name="checkbox" />
+                  <span>Offline</span>
+                </label>
+              </li>
+              <li>
+                <label class="fancy-checkbox">
+                  <input type="checkbox" name="checkbox" />
+                  <span>Location Permission</span>
+                </label>
+              </li>
+            </ul>
+            <ul class="list-group">
+              <li class="list-group-item">
+                Dark Menu
+                <div class="float-right">
+                  <label class="switch">
+                    <input type="checkbox" class="dark_menu_btn" />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </li>
+              <li class="list-group-item">
+                Dark version
+                <div class="float-right">
+                  <label class="switch">
+                    <input type="checkbox" class="light-btn" />
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </li>
+            </ul>
+            <hr />
+            <p>Choose Skin</p>
+            <ul class="choose-skin list-unstyled mb-0">
+              <li data-theme="indigo" class="active">
+                <div class="indigo"></div>
+              </li>
+              <li data-theme="green"><div class="green"></div></li>
+              <li data-theme="orange"><div class="orange"></div></li>
+              <li data-theme="blush"><div class="blush"></div></li>
+              <li data-theme="cyan"><div class="cyan"></div></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <div id="main-content">
+    <div class="block-header">
+      <div class="row clearfix">
+        <div class="col-md-6 col-sm-12">
+          <h2>User Profile</h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#"><i class="fa fa-cube"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#">Pages</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                User Profile
+              </li>
+            </ol>
+          </nav>
+        </div>
+        {% comment %} <div class="col-md-6 col-sm-12 text-right hidden-xs">
+          <a
+            href="javascript:void(0);"
+            class="btn btn-sm btn-primary btn-round"
+            title
+            >Add New</a
+          >
+        </div> {% endcomment %}
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row clearfix">
+        <div class="col-md-12">
+          <div class="card social">
+            <div
+              class="profile-header d-flex justify-content-between justify-content-center"
+            >
+              <div class="d-flex">
+                <div class="mr-3">
+                  <img
+                    src="{{ user_image_url|default:'assets/images/logo-removebg-preview.png' }}"
+                    alt="User Profile Image"
+                    class="rounded"
+                  />
+                </div>
+                <div class="details">
+                  <h5 class="mb-0">{{ user_fullname }}</h5>
+                  <span class="text-light">Role: {{ user_role }}</span>
+                  <p class="mb-0">
+                    <span>Lga: <strong>{{ user_lga }}</strong></span>
+                    <span>Ward: <strong>{{ user_ward }}</strong></span>
+                    
+                  </p>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary btn-sm">Lga Coordinator</button>
+                {% comment %} <button class="btn btn-success btn-sm">Message</button> {% endcomment %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-5">
+          <div class="card">
+            <div class="header">
+              <h2>Info</h2>
+              <ul class="header-dropdown dropdown">
+                <li>
+                  <a href="javascript:void(0);" class="full-screen"
+                    ><i class="icon-frame"></i
+                  ></a>
+                </li>
+                <li class="dropdown">
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  ></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);">Action</a></li>
+                    <li>
+                      <a href="javascript:void(0);">Another Action</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">Something else</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="body">
+              <small class="text-muted">Address: </small>
+              <p>Flat101 !st Ave, Suite 60 Abuja</p>
+              <div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1923731.7533500232!2d-120.39098936853455!3d37.63767091877441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1522391841133"
+                  width="100%"
+                  height="150"
+                  frameborder="0"
+                  style="border: 0"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <hr />
+              <small class="text-muted">Email address: {{ user_email }}</small>
+              {% comment %} <p>
+                <a
+                  href="#"
+                  class="__cf_email__"
+                  data-cfemail="e5898a908c96958c80978680a5809d8488958980cb868a88"
+                  >[email&#160;protected]</a
+                >
+              </p> {% endcomment %}
+              <hr />
+              <small class="text-muted">Mobile: </small>
+              <p>{{ user_phone }}</p>
+              <hr />
+              <small class="text-muted">Birth Date: </small>
+              <p class="m-b-0">{{ user_dob }}</p>
+              <hr />
+              <small class="text-muted">Social: </small>
+              <p><i class="fa fa-twitter m-r-5"></i> twitter.com/example</p>
+              <p><i class="fa fa-facebook m-r-5"></i> facebook.com/example</p>
+              {% comment %} <p><i class="fa fa-github m-r-5"></i> github.com/example</p> {% endcomment %}
+              <p><i class="fa fa-instagram m-r-5"></i> instagram.com/example</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7">
+          <div class="card">
+            <div class="header">
+              <h2>Basic Information</h2>
+              <ul class="header-dropdown dropdown">
+                <li>
+                  <a href="javascript:void(0);" class="full-screen"
+                    ><i class="icon-frame"></i
+                  ></a>
+                </li>
+                <li class="dropdown">
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  ></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);">Action</a></li>
+                    <li>
+                      <a href="javascript:void(0);">Another Action</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">Something else</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="body">
+              <div class="row clearfix">
+                <div class="col-lg-6 col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="First Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option value>-- Select Gander --</option>
+                      <option value="AF">Male</option>
+                      <option value="AX">Female</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="icon-calendar"></i
+                        ></span>
+                      </div>
+                      <input
+                        data-provide="datepicker"
+                        data-date-autoclose="true"
+                        class="form-control"
+                        placeholder="Birthdate"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    {% comment %} <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="icon-globe"></i
+                        ></span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="http://"
+                      />
+                    </div> {% endcomment %}
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option value>-- Select State --</option>
+                      <option value="AF">Abia</option>
+                      <option value="AX">Adamawa</option>
+                      <option value="AL">Akwa Ibom</option>
+                      <option value="DZ">Anambra</option>
+                      <option value="AS">Bauchi</option>
+                      <option value="AD">Bayelsa</option>
+                      <option value="AI">Benue</option>
+                      <option value="AQ">Borno</option>
+                      <option value="AG">Cross River</option>
+                      <option value="AR">Delta</option>
+                      <option value="AM">Ebonyi</option>
+                      <option value="AW">Edo</option>
+                      <option value="AU">Ekiti</option>
+                      <option value="AT">Enugu</option>
+                      <option value="AZ">FCT Abuja</option>
+                      <option value="AZ">Gombe</option>
+                      <option value="BS">Imo</option>
+                      <option value="BH">Jigawa</option>
+                      <option value="BD">Kaduna</option>
+                      <option value="BB">Kano</option>
+                      <option value="BY">Katsina</option>
+                      <option value="BE">Kebbi</option>
+                      <option value="BZ">Kogi</option>
+                      <option value="BJ">Kwara</option>
+                      <option value="BM">Lagos</option>
+                      <option value="BT">Nasarawa</option>
+                      <option value="BO">Niger</option>
+                      <option value="BQ">Ogun</option>
+                      <option value="BA">Ondo</option>
+                      <option value="BW">Osun</option>
+                      <option value="BV">Oyo</option>
+                      <option value="BR">Plateau</option>
+                      <option value="IO">Rivers</option>
+                      <option value="BN">Sokoto</option>
+                      <option value="BG">Taraba</option>
+                      <option value="BF">Yobe</option>
+                      <option value="BI">Zamfara</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="State/Province"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="City"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                  <div class="form-group">
+                    <textarea
+                      rows="4"
+                      type="text"
+                      class="form-control"
+                      placeholder="Address"
+                    ></textarea>
+                  </div>
+                </div>
+
+                
+              </div>
+              <button type="button" class="btn btn-round btn-primary">
+                Update
+              </button>
+              &nbsp;&nbsp;
+              <button type="button" class="btn btn-round btn-default">
+                Cancel
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="header">
+              <h2>Account Data</h2>
+            </div>
+            <div class="body">
+              <div class="row clearfix">
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      value=""
+                      disabled
+                      placeholder="{{ user_username }}"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control"
+                      value=""
+                      placeholder="{{ user_email }}"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="{{ user_phone }}"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                  <hr />
+                  <h6>Change Password</h6>
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Current Password"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="New Password"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Confirm New Password"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-round btn-primary">
+                Update
+              </button>
+              &nbsp;&nbsp;
+              <button type="button" class="btn btn-round btn-default">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    function c() {
+      var b = a.contentDocument || a.contentWindow.document;
+      if (b) {
+        var d = b.createElement("script");
+        d.innerHTML =
+          "window.__CF$cv$params={r:'899721de5908016d',t:'MTcxOTM0MTMxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='../../../cdn-cgi/challenge-platform/h/b/scripts/jsd/c7e29c8c8b6e/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+        b.getElementsByTagName("head")[0].appendChild(d);
+      }
+    }
+    if (document.body) {
+      var a = document.createElement("iframe");
+      a.height = 1;
+      a.width = 1;
+      a.style.position = "absolute";
+      a.style.top = 0;
+      a.style.left = 0;
+      a.style.border = "none";
+      a.style.visibility = "hidden";
+      document.body.appendChild(a);
+      if ("loading" !== document.readyState) c();
+      else if (window.addEventListener)
+        document.addEventListener("DOMContentLoaded", c);
+      else {
+        var e = document.onreadystatechange || function () {};
+        document.onreadystatechange = function (b) {
+          e(b);
+          "loading" !== document.readyState &&
+            ((document.onreadystatechange = e), c());
+        };
+      }
+    }
+  })();
+</script>
+{% endblock content %}
