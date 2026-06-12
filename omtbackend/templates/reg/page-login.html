@@ -1,49 +1,109 @@
-{% extends "header/header.html" %} 
-{% load static %} 
+{% extends "header/header.html" %}
+{% load static %}
 
-{% block title %} 
-Login
-{% endblock %} 
+{% block title %}
+  Login
+{% endblock %}
 
 {% block content %}
-  
+<style>
+  .auth-main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #f9f9f9;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .auth_brand img {
+    max-width: 100px;
+    height: auto;
+    margin: 0 10px;
+  }
+
+  .form-auth-small {
+    width: 100%;
+    margin: auto;
+  }
+
+  .btn-round {
+    width: 100%;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .forgot-password {
+    display: block;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 0.9rem;
+  }
+
+  .forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+
+  .sign_up {
+    padding-top: 10px;
+  }
+</style>
+
 <div class="auth-main">
   <div class="auth_div">
     <div class="card">
-      <div class="auth_brand log-reg">
-        <a class="navbar-brand" href="">
-          <img style="width: 100px" src="{% static 'assets/images/logo-removebg-preview.png' %}" alt="" />
-          <img style="width: 50px" src="{% static 'image/ACG-removebg-preview(1).png' %}" alt="" />
+      <div class="auth_brand log-reg text-center">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'assets/images/logo-removebg-preview.png' %}" alt="" />
+          <img src="{% static 'image/ACG-removebg-preview(1).png' %}" alt="" />
         </a>
       </div>
       <div class="body body-main">
         <p class="lead">Login Account</p>
-        
-       
-        
+
         <form class="form-auth-small m-t-20" id="loginForm" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-            <div class="form-group">
-              <input type="email" class="form-control round" id="email" name="email" placeholder="Your Email" required>
-            </div>
-       
-          <div class="form-step">
-            <div class="form-group">
-              <input type="password" class="form-control round" id="password" name="password" placeholder="Password" required>
-            </div>
-          
-           
-            
-              <button type="submit" id="btn-ward" class="btn btn-success btn-round">
-                <span id="btn-text">Login</span>
-                <span class="spinner-border" style="width: 1rem; height: 1rem; display: none"></span>
-              </button>
-            </div>
+          <div class="form-group">
+            <input type="email" class="form-control round" id="email" name="email" placeholder="Your Email" required>
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control round" id="password" name="password" placeholder="Password" required>
+          </div>
+
+          <button type="submit" id="btn-ward" class="btn btn-success btn-round mt-3">
+            <span id="btn-text">Login</span>
+            <span class="spinner-border" style="width: 1rem; height: 1rem; display: none"></span>
+          </button>
+
+          <a href="{% url 'password_reset' %}" class="btn btn-success btn-round mt-3">
+            Forgot Password?
+          </a>
+
+          <div class="sign_up">
+            Don't have an account? <a href="{% url 'register' %}">Sign up</a>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
 {% endblock content %}

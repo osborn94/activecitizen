@@ -50,8 +50,6 @@ class Complete_Reg(View):
             user_image_url = user.image.url if user.image else None
 
 
-        # Use provided user or fallback to request.user
-        user = user or request.user
 
         if user and user.ward:
             ward = user.ward
@@ -59,12 +57,15 @@ class Complete_Reg(View):
             # Count active and pending users in the same ward
             current_ward_members = User.objects.filter(ward=ward, email_verified=True).count()
 
+            ward_admin_exists = User.objects.filter(ward=ward, role='ward_admin').exists()
+
             context.update({
                 'current_ward_members': current_ward_members,
                 'remaining_ward_members': max(expected_ward_members - current_ward_members, 0),
                 'expected_ward_members': expected_ward_members,
                 'ward_name': ward.name,
-                'user_image_url': user.image.url if user.image else None  # Assuming `UserProfile` has `image` field
+                'user_image_url': user.image.url if user.image else None,
+                'ward_admin_exists': ward_admin_exists,
             })
         else:
             context.update({
@@ -73,7 +74,8 @@ class Complete_Reg(View):
                 'expected_ward_members': expected_ward_members,
                 'ward_name': 'No Ward',
                 'members_remaining': expected_ward_members,
-                'user_image_url': None  # If no user or image is found
+                'user_image_url': None,
+                'ward_admin_exists': False,
             })
 
         return context

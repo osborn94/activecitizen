@@ -63,7 +63,7 @@ def send_otp_email(user, otp, request):
     EmailThread(email).start()
 
 
-    
+
 class RegisterView(View):
     def get(self, request):
         return render(request, 'reg/page-register.html')
@@ -82,7 +82,10 @@ class RegisterView(View):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
-        if not all([full_name, email, username, mobile_number, password, confirm_password, state_name, lga_name, ward_name, polling_unit_name, passport]):
+        gender = request.POST.get('gender')
+        dob = request.POST.get('dob')
+
+        if not all([full_name, email, username, mobile_number, password, confirm_password, state_name, lga_name, ward_name, polling_unit_name, passport, gender, dob]):
             return JsonResponse({'error': 'Please fill all the form fields'}, status=400)
 
         if password != confirm_password:
@@ -103,6 +106,7 @@ class RegisterView(View):
             ward, _ = Ward.objects.get_or_create(name=ward_name, lga=lga)
             polling_unit, _ = PollingUnit.objects.get_or_create(name=polling_unit_name, ward=ward)
 
+
             otp = get_random_string(6, allowed_chars='0123456789')
 
             user = User.objects.create(
@@ -119,7 +123,10 @@ class RegisterView(View):
                 is_active=False,
                 otp=otp,
                 otp_created_at=timezone.now(),
-                email_verified=False
+                email_verified=False,
+                dob=dob,
+                gender=gender,
+                status='dormant',
             )
 
             send_otp_email(user, otp, request)
@@ -131,61 +138,9 @@ class RegisterView(View):
             })
 
         except Exception as e:
+            # import traceback
+            # traceback.print_exc()
             logger.exception("Registration failed")
             return JsonResponse({'error': 'Something went wrong during registration.'}, status=500)
+            # return JsonResponse({'error': str(e)}, status=500)
 
-
-        
-# class ActivateAccountView(View):
-#     def get(self, request, uidb64, token):
-#         try:
-#             uid = force_str(urlsafe_base64_decode(uidb64))
-#             user = User.objects.get(pk=uid)
-#         except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-#             user = None
-
-#         if user is not None and account_activation_token.check_token(user, token):
-#             user.is_active = True
-#             user.save()
-            
-#             # Count users in the same polling unit
-#             polling_unit_members_count = User.objects.filter(
-#                 polling_unit=user.polling_unit,
-#                 is_active=True
-#             ).count()
-            
-#             messages.success(request, 'Your account has been activated successfully!')
-            
-#             # Get ward information for the user
-#             ward = user.ward
-            
-#             # Count active and total users in the ward
-#             ward_active_members = User.objects.filter(
-#                 ward=ward,
-#                 is_active=True
-#             ).count()
-            
-#             # For pending members, count inactive users or users awaiting approval
-#             ward_pending_members = User.objects.filter(
-#                 ward=ward,
-#                 is_active=False
-#             ).count()
-            
-#             # Expected members threshold (adjust as needed)
-#             expected_ward_members = 10
-            
-#             # Redirect based on ward member count
-#             if ward_active_members < expected_ward_members:
-#                 # Pass these counts to the recruitment page
-#                 request.session['ward_active_members'] = ward_active_members
-#                 request.session['ward_pending_members'] = ward_pending_members
-#                 request.session['expected_ward_members'] = expected_ward_members
-#                 request.session['ward_name'] = ward.name
-                
-#                 return redirect('success')
-#             else:
-#                 return redirect('login')
-#         else:
-#             messages.error(request, 'Activation link is invalid or has expired!')
-#             return redirect('register')
-        

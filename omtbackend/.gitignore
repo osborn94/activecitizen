@@ -1,12 +1,27 @@
-# .gitignore
+# Python
 *.pyc
 __pycache__/
+
+# Django
 db.sqlite3
 *.sqlite3
 .env
 .env.*
+local_settings.py
 *.log
+
+# Static and Media
 /staticfiles/
 /media/
-local_settings.py
+/Dashboard-ward/
+
+# Virtual environment
 venv/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

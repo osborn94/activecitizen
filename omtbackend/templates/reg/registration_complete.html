@@ -2,20 +2,21 @@
 <html lang="en">
   {% load static %}
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Registration Status</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, sans-serif;
     }
 
     .navbar {
       background-color: #fff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       padding: 15px 0;
     }
 
@@ -71,7 +72,7 @@
 
     .content-card {
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
       padding: 30px;
       margin: 20px 0;
     }
@@ -100,6 +101,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      text-decoration: none;
     }
 
     .footer {
@@ -130,7 +132,6 @@
   <!-- Navbar with Logout Button -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      {% comment %} <a class="navbar-brand" href="#">🎯 Registration</a> {% endcomment %}
       <div class="ms-auto">
         <form action="{% url 'logout' %}" method="post" class="d-inline">
           {% csrf_token %}
@@ -142,6 +143,41 @@
     </div>
   </nav>
 
+{% if current_ward_members >= 2 %}
+  {% if ward_admin_exists %}
+    {% comment %} <div class="alert alert-info text-center">
+      A Ward Admin has already been selected for <strong>{{ ward_name }}</strong>.
+      <h3>🎉 Great! wait to be made active by your ward admin</h3>
+    </div> {% endcomment %}
+    <div class="d-flex justify-content-center mt-4">
+      <div class="alert alert-info text-center">
+        A Ward Admin has already been selected for <strong>{{ ward_name }}</strong>.
+        <h3>🎉 Great! wait to be made active by your ward admin</h3>
+      </div>
+    </div>
+  {% else %}
+    <div class="col-4 step">
+      <div class="step-icon">
+        <i class="bi bi-check-circle-fill"></i>
+        <h4>{{ current_ward_members }}</h4>
+      </div>
+      <div class="step-text text-center">Current Ward Members</div>
+    </div>
+
+    <div class="content-card bg-light text-center">
+      <h3>🎉 Great! You have enough members</h3>
+      <p>You can now elect a ward admin by typing in the correct username of your candidate.</p>
+
+      <a href="{% url 'next_page' %}" class="tip-again-btn bg-secondary mt-3">
+        <i class="bi bi-arrow-right-circle"></i> Proceed to Next Step
+      </a>
+
+       <a href="https://t.me/activecitizensn" target="_blank" class="tip-again-btn">
+          <i class="bi bi-telegram"></i> Or join telegram to know who to vote
+        </a>
+    </div>
+  {% endif %}
+{% else %}
   <!-- Progress Steps -->
   <div class="container progress-container">
     <div class="progress-line"></div>
@@ -172,23 +208,37 @@
 
   <!-- Main Content -->
   <div class="container">
-    <div class="content-card">
-      <div class="text-center">
-        <img class="success-icon" src="{{ user_image_url|default:'assets/images/logo-removebg-preview.png' }}" alt="User Profile Image">
+    <div class="content-card text-center">
+      <img
+        class="success-icon"
+        src="{{ user_image_url|default:'assets/images/logo-removebg-preview.png' }}"
+        alt="User Profile Image"
+      />
 
-        <h3>Account Created and Active</h3>
-        <p class="mb-1">
-          Your request to join the <strong>{{ ward_name }}</strong> Register is currently pending approval <br>
-          Approval will be granted once your ward has at least <strong>{{ expected_ward_members }} registered persons.</strong>
-        </p>
-        <p class="text-muted">📢 Encourage others in your ward to register so your request can be approved faster.</p>
+      <h3>Account Created But Dormant</h3>
+      <p class="mb-1">
+        Your request to join the <strong>{{ ward_name }}</strong> Ward is
+        currently pending approval <br />
+        Approval will be granted once your ward has at least
+        <strong>{{ expected_ward_members }} registered persons.</strong>
+      </p>
+      <p class="text-muted">
+        📢 Encourage others in your ward to register so your request can be
+        approved faster.
+      </p>
 
-        <a href="{% url 'login' %}" class="tip-again-btn">
+      <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+        <a href="https://t.me/activecitizensn" target="_blank" class="tip-again-btn">
           <i class="bi bi-telegram"></i> Join Waiting Room
         </a>
+        {% comment %} <a href="{% url 'login' %}" class="tip-again-btn">
+          <i class="bi bi-telegram"></i> Join Waiting Room
+        </a> {% endcomment %}
       </div>
     </div>
   </div>
+{% endif %}
+
 
   <!-- Footer -->
   <div class="container footer">

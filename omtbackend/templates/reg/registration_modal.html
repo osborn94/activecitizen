@@ -1,0 +1,296 @@
+{% load static %}
+
+<!-- Include necessary styles only if not already included in the base template -->
+<link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/animate-css/vivify.min.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/unboarding.css' %}" />
+
+<style>
+    .modal-body {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    .modal-content {
+        overflow-x: hidden;
+    }
+
+    .auth-main .auth_div .card {
+        overflow: hidden;
+        border: 0;
+        box-shadow: none;
+        margin: 0 auto;
+        width: 500px;
+        margin-top: 100px;
+    }
+
+    .form-step {
+        display: none;
+    }
+
+    .form-step.active {
+        display: block;
+    }
+
+    .multi-step-progress {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 0 30px;
+    }
+
+    .progress-step {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        position: relative;
+    }
+
+    .progress-step.active {
+        background: #4CAF50;
+        color: white;
+    }
+
+    .progress-step.completed {
+        background: #8BC34A;
+        color: white;
+    }
+
+    .progress-step::after {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 2px;
+        background: #ddd;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .progress-step:last-child::after {
+        display: none;
+    }
+
+    .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .image-upload-container {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .image-preview {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ddd;
+        display: none;
+        margin: 0 auto 15px;
+    }
+
+    .upload-loader {
+        width: 100%;
+        height: 4px;
+        background: #f1f1f1;
+        margin-bottom: 15px;
+        display: none;
+    }
+
+    .upload-loader .progress {
+        height: 100%;
+        background: #4CAF50;
+        width: 0%;
+        transition: width 0.3s;
+    }
+
+    .upload-label {
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 5px;
+        text-align: center;
+        border: 1px dashed #ccc;
+        transition: all 0.3s;
+    }
+
+    .upload-label:hover {
+        background: #e9ecef;
+        border-color: #999;
+    }
+
+    .upload-icon {
+        font-size: 24px;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+</style>
+
+<!-- Modal Markup -->
+<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content p-4 bg-white shadow rounded-3">
+
+            <!-- Modal Header -->
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Join Active Citizen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+
+                <!-- Logo -->
+                <div class="auth_brand text-center mb-3">
+                    <a class="navbar-brand" href="#">
+                        <img style="width: 100px" src="{% static 'assets/images/logo-removebg-preview.png' %}" alt="" />
+                        {% comment %} <img style="width: 50px" src="{% static 'image/ACG-removebg-preview(1).png' %}" alt="" /> {% endcomment %}
+                    </a>
+                </div>
+
+                <!-- Registration Form -->
+                <form id="registrationForm" class="form-auth-small m-t-20" method="POST" action="{% url 'mem_manage' user_hash=expected_hash %}" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="register_member">
+                    <!-- Progress Bar -->
+                    <div class="multi-step-progress">
+                        <div class="progress-step active" data-step="1">1</div>
+                        <div class="progress-step" data-step="2">2</div>
+                        <div class="progress-step" data-step="3">3</div>
+                    </div>
+
+                    <!-- Step 1 -->
+                    <div class="form-step active" data-step="1">
+                        <div class="form-group">
+                            <input type="text" class="form-control round" id="fullName" name="fullname" placeholder="Your Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control round" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control round" id="mobileNumber" name="phone" placeholder="Mobile Number" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control round" id="username" name="username" placeholder="Your Username" required>
+                        </div>
+
+                         <div class="form-group">
+                            <select class="form-control round" id="genderSelect" name="gender" required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                           <input type="date" class="form-control round" id="editDob" name="dob" required>
+                        </div>
+
+                        <div class="nav-buttons">
+                            <button type="button" class="btn btn-primary btn-round next-step" data-next="2">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="form-step" data-step="2">
+                        <!-- Your step 2 fields here -->
+                        
+                        <div class="form-group">
+                            <select class="form-control round" id="stateSelect" name="state" required>
+                                <option value="">Select State</option>
+                                {% comment %} {% for state in states %}
+                                    <option value="{{ state.id }}">{{ state.name }}</option>
+                                {% endfor %} {% endcomment %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control round" id="lgaSelect" name="lga" disabled required>
+                                <option value="">Select LGA</option>
+                                {% comment %} {% for lga in lgas %}
+                                    <option value="{{ lga.id }}">{{ lga.name }}</option>
+                                {% endfor %} {% endcomment %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control round" id="wardSelect" name="ward" disabled required>
+                                <option value="">Select Ward</option>
+                                {% comment %} {% for ward in wards %}
+                                    <option value="{{ ward.id }}">{{ ward.name }}</option>
+                                {% endfor %} {% endcomment %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control round" id="pollingUnitSelect" name="polling_unit" disabled required>
+                                <option value="">Select Polling Unit</option>
+                                {% comment %} {% for pu in polling_units %}
+                                    <option value="{{ pu.id }}">{{ pu.name }}</option>
+                                {% endfor %} {% endcomment %}
+                            </select>
+                        </div>
+
+                        <div class="nav-buttons">
+                            <button type="button" class="btn btn-outline-secondary btn-round prev-step" data-prev="1">Previous</button>
+                            <button type="button" class="btn btn-primary btn-round next-step" data-next="3">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="form-step" data-step="3">
+                        <!-- Your step 3 fields here -->
+                        <div class="form-group">
+                            <input type="password" class="form-control round" id="password" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control round" id="confirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+                        </div>
+                            
+                        <div class="form-group image-upload-container">
+                            <label for="passport" class="upload-label">
+                                <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                                </div>
+                                <span>Upload Profile Picture</span>
+                                <input type="file" class="form-control round" id="passport" name="passport" accept="image/*" required style="display: none;">
+                            </label>
+                            <div class="upload-loader" id="uploadLoader">
+                                <div class="progress" id="uploadProgress"></div>
+                            </div>
+                            <img id="imagePreview" class="image-preview" src="#" alt="Image Preview">
+                        </div>
+                        <div class="nav-buttons">
+                            <button type="button" class="btn btn-outline-secondary btn-round prev-step" data-prev="2">Previous</button>
+                            <button type="submit" id="btn-ward" class="btn btn-success btn-round">
+                                <span id="btn-text">Register Now</span>
+                                <span class="spinner-border" style="width: 1rem; height: 1rem; display: none"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts (Place at bottom or in base.html) -->
+<script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script>
+<script>
+    const DATA_JSON_URL = "{% static 'reg/data.json' %}";
+</script>
+<script src="{% static 'reg/signup.js' %}"></script>
+{% comment %} <script src="{% static 'assets/customjs/register.js' %}"></script> {% endcomment %}
+<script src="{% static 'assets/customjs/reg_modal.js' %}"></script>

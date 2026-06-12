@@ -1,0 +1,983 @@
+{% extends "header/wardAdmin_header.html" %}
+{% load static %}
+
+{% block title %}
+Ward Admin 
+{% endblock %} 
+
+{% block content %}
+
+<div class="overlay"></div>
+<div id="wrapper">
+  <input type="checkbox" name="check" id="check" />
+  <label for="check">
+    <i class="fa-solid fa-circle-chevron-right open-icon" id="open-icon"></i>
+    <i class="fa-solid fa-circle-chevron-left close-icon" id="close-icon"></i>
+  </label>
+
+  <div class="overlay1"></div>
+  <nav class="navbar navbar-fixed-top position-fixed top-0 px-2">
+    <div class="container-fluid">
+      <div class="navbar-left">
+        <div class="navbar-brand">
+          <a class="small_menu_btn" href="javascript:void(0);"
+            ><img
+              style="width: 30px"
+              src="{% static 'assets/upnorth/logo-removebg-preview.png' %}"
+              alt="Logo"
+          /></a>
+          <a href="{% url 'ward_admin' user_hash=expected_hash %}"
+            ><span
+              ><img
+                style="width: 50px"
+                src="{% static 'assets/upnorth/ACG-removebg-preview(1).png' %}"
+                alt="" /></span
+          ></a>
+        </div>
+        <form id="navbar-search" class="navbar-form search-form">
+          <input
+            value
+            class="form-control"
+            placeholder="Search here..."
+            type="text"
+          />
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+      <div class="navbar-right">
+        <div id="navbar-menu">
+          <ul class="nav navbar-nav d-flex flex-row align-items-center">
+
+            
+            <!-- <li class="dropdown">
+              <a
+                href="javascript:void(0);"
+                class="dropdown-toggle icon-menu"
+                data-toggle="dropdown"
+              >
+                <i class="fa fa-envelope"></i>
+                <span class="notification-dot bg-green"></span>
+              </a>
+              <ul
+                class="dropdown-menu right_chat email vivify fadeIn position-absolute"
+              >
+                <li class="header">You have 4 New eMail</li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="media">
+                      <div class="avtar-pic w35 lbg-indigo">
+                        <span>FC</span>
+                      </div>
+                      <div class="media-body">
+                        <span class="name"
+                          >Folisise Chosielie
+                          <small class="float-right">12min ago</small></span
+                        >
+                        <span class="message">New Messages</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="media">
+                      <img
+                        class="media-object"
+                        src="{% static 'assets/images/xs/avatar5.jpg' %}"
+                        alt
+                      />
+                      <div class="media-body">
+                        <span class="name"
+                          >Louis Henry
+                          <small class="float-right">38min ago</small></span
+                        >
+                        <span class="message"
+                          >Integer ante arcu, accumsan a, consectetuer eget,
+                          posuere ut, mauris.</span
+                        >
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="media">
+                      <div class="avtar-pic w35 lbg-red">
+                        <span>FC</span>
+                      </div>
+                      <div class="media-body">
+                        <span class="name"
+                          >James Wert
+                          <small class="float-right">Just now</small></span
+                        >
+                        <span class="message"
+                          >It is a long established fact that a reader will be
+                          distracted</span
+                        >
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="media">
+                      <div class="avtar-pic w35 lbg-green">
+                        <span>FC</span>
+                      </div>
+                      <div class="media-body">
+                        <span class="name"
+                          >James Wert
+                          <small class="float-right">Just now</small></span
+                        >
+                        <span class="message"
+                          >The point of using Lorem Ipsum is that it has a
+                          more</span
+                        >
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="media mb-0">
+                      <img
+                        class="media-object"
+                        src="{% static 'assets/images/xs/avatar2.jpg' %}"
+                        alt
+                      />
+                      <div class="media-body">
+                        <span class="name"
+                          >Debra Stewart
+                          <small class="float-right">2hr ago</small></span
+                        >
+                        <span class="message"
+                          >Nullam vel sem. Nullam vel sem.</span
+                        >
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+
+            <li class="dropdown">
+              <a
+                href="javascript:void(0);"
+                class="dropdown-toggle icon-menu"
+                data-toggle="dropdown"
+              >
+                <i class="fa fa-bell"></i>
+                <span class="notification-dot bg-azura"></span>
+              </a>
+              <ul
+                class="dropdown-menu feeds_widget vivify fadeIn position-absolute"
+              >
+                <li class="header">You have 4 New Notifications</li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="feeds-left lbg-red">
+                      <i class="fa fa-check"></i>
+                    </div>
+                    <div class="feeds-body">
+                      <h4 class="title text-danger">
+                        Issue Fixed
+                        <small class="float-right text-muted">9:10 AM</small>
+                      </h4>
+                      <small>WE have fix all Design bug with Responsive</small>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="feeds-left lbg-info">
+                      <i class="fa fa-user"></i>
+                    </div>
+                    <div class="feeds-body">
+                      <h4 class="title text-info">
+                        New User
+                        <small class="float-right text-muted">9:15 AM</small>
+                      </h4>
+                      <small>I feel great! Thanks team</small>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="feeds-left lbg-orange">
+                      <i class="fa fa-question-circle"></i>
+                    </div>
+                    <div class="feeds-body">
+                      <h4 class="title text-warning">
+                        Server Warning
+                        <small class="float-right text-muted">9:17 AM</small>
+                      </h4>
+                      <small>Your connection is not private</small>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);">
+                    <div class="feeds-left lbg-green">
+                      <i class="fa fa-thumbs-o-up"></i>
+                    </div>
+                    <div class="feeds-body">
+                      <h4 class="title text-success">
+                        2 New Feedback
+                        <small class="float-right text-muted">9:22 AM</small>
+                      </h4>
+                      <small>It will give a smart finishing to your site</small>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+
+
+            <!-- Profile Image with Dropdown -->
+            <div class="dropdown profile-sec">
+              <div
+                class="d-flex align-items-center cursor-pointer"
+                id="profileDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="{{ user_image_url|default:'assets/images/logo-removebg-preview.png' }}"
+                  alt="User Profile Image"
+                  alt="Profile"
+                  class="rounded-circle profile-image"
+                />
+                <i class="fa fa-chevron-down ms-1 text-secondary small"></i>
+              </div>
+
+              <ul
+                class="dropdown-menu dropdown-menu-end position-absolute"
+                aria-labelledby="profileDropdown"
+              >
+                <li>
+                  <h3 class="dropdown-header fs-5 fw-bold text-success">
+                    {{ user_name }}
+                  </h3>
+                  <p class="dropdown-header text-secondary">{{ user_email }}</p>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'ward_admin_profile' user_hash=expected_hash %}">My Account</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li class="text-danger log-out">
+                  <!-- <a href="{% url 'logout' %}"  class="icon-menu dropdown-item text-danger"> <span class="me-2"><i
+                          class="fa fa-power-off"></i></span>Logout</a> -->
+                  <form
+                    method="post"
+                    action="{% url 'logout' %}"
+                    style="margin: 0"
+                  >
+                    {% csrf_token %}
+                    <button
+                      type="submit"
+                      class="dropdown-item text-danger bg-transparent border-0 w-100 text-start"
+                    >
+                      <i class="fa fa-power-off me-2"></i> Logout
+                    </button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="left-sidebar" class="sidebar left-sidebar py-4">
+    <div class="sidebar_list">
+      <div class="tab-content" id="main-menu">
+        <div class="tab-pane active" id="Home-icon">
+          <nav class="sidebar-nav sidebar-scroll">
+            <ul class="metismenu">
+              <li class="active">
+                <a href="#"
+                  ><i class="fa fa-tachometer"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li class="header mt-1"></li>
+
+              <li class="">
+                <a href="{% url 'mem_manage' user_hash=expected_hash %}" class="d-flex align-items-center">
+                  <i class="fa-regular fa-user"></i>
+                  <span>Member Management</span>
+                </a>
+              </li>
+
+              {% comment %} <li class="">
+                <a href="{% url 'pu_agent' user_hash=expected_hash %}">
+                  <i class="fa-regular fa-circle-user"></i>
+                  <span>PU Agents Management</span>
+                </a>
+              </li> {% endcomment %}
+
+              <li class="">
+                <a href="#">
+                {% comment %} <a href="{% url 'pu_manage' user_hash=expected_hash %}"> {% endcomment %}
+                  <i class="fa-regular fa-map"></i>
+                  <span>PU Management</span>
+                </a>
+              </li>
+              <li class="">
+                <a href="{% url 'ward_admin_profile' user_hash=expected_hash %}">
+                  <i class="fas fa-user"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
+              {% comment %} <li>
+                <a href="page-profile.html">
+                  <i class="icon-user"></i>
+                  <span>Profile</span></a
+                >
+              </li> {% endcomment %}
+              <li>
+                <a href="ireport.html">
+                  <i class="fas fa-file-alt"></i>
+                  <span>iReport</span></a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="main-content" class="main-container">
+    <!-- PAGE DESCRIPTION HEADER SECTION -->
+    <div class="block-header py-4">
+      <div class="row clearfix d-flex justify-content-between mt-3">
+        <div class="col mb-3">
+          <h1 class="text-sm-nowrap">
+            <span class="fw-bold">{{ user_ward }}:</span>
+            <span class="fw-medium"> {{ user_fullname }}</span>
+          </h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mt-3">
+              <li class="breadcrumb-item">
+                <a href="#"><i class="fa fa-cube" aria-hidden="true"></i></a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Dashboard
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="text-left mt-0 mt-sm-0 col-sm-auto">
+          <p class="mb-0">
+            <span>Role:</span>
+            <span
+              class="badge rounded-pill fw-medium bg-success-subtle text-dark p-2 border-0 me-0"
+              >Ward Coordinator</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row clearfix">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card">
+            <div class="body">
+              <div class="w_summary">
+                <div class="s_chart">
+                  <span class="card-icons">
+                    <i class="fa-solid fa-people-group"></i>
+                  </span>
+                </div>
+                <div class="s_detail">
+                  <h2 class="font500 mb-2">{{ total_ward_members }}</h2>
+                  <span class="fs-">Total Members</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-first">
+            <div class="body">
+              <div class="w_summary">
+                <div class="s_chart">
+                  <span class="card-icons">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                  </span>
+                </div>
+                <div class="s_detail">
+                  <h2 class="font500 mb-2">{{ total_polling_units }}</h2>
+                  <span>Total Polling Units</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card">
+            <div class="body">
+              <div class="w_summary">
+                <div class="s_chart">
+                  <span class="card-icons">
+                    <i class="fa-solid fa-users"></i>
+                  </span>
+                </div>
+                <div class="s_detail">
+                  <h2 class="font500 mb-2">{{ active_agents }}</h2>
+                  <span>Active P U Agents</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card">
+            <div class="body">
+              <div class="w_summary">
+                <div class="s_chart">
+                  <span class="card-icons">
+                    <i class="fa-solid fa-person-circle-check"></i>
+                  </span>
+                </div>
+                <div class="s_detail">
+                  <h2 class="font500 mb-2">{{ pending_agents }}</h2>
+                  <span>Pending Approval</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-lg-6 col-md-6">
+          <div class="card">
+            <div class="header">
+              <h2>Growth In Membership Over Time</h2>
+              <ul class="header-dropdown dropdown">
+                <li>
+                  <a href="javascript:void(0);" class="full-screen"
+                    ><i class="icon-frame"></i
+                  ></a>
+                </li>
+                <li class="dropdown">
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  ></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);">Weekly</a></li>
+                    <li>
+                      <a href="javascript:void(0);">Monthly</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">Yearly</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="body">
+              <canvas id="lineChart" class="w-100 h-100"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+          <div class="card">
+            <div class="header">
+              <h2>Number Of Members Per Polling Unit</h2>
+              <ul class="header-dropdown dropdown">
+                <li>
+                  <a href="javascript:void(0);" class="full-screen"
+                    ><i class="icon-frame"></i
+                  ></a>
+                </li>
+                <li class="dropdown">
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  ></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);">Weekly</a></li>
+                    <li>
+                      <a href="javascript:void(0);">Monthly</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">Yearly</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="body">
+              <canvas id="barChart" class="w-100 h-100"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-lg-12 col-md-12">
+          <div class="card">
+            <div class="header">
+              <h2>Distribution of Polling Unit Agents across Ward.</h2>
+              <ul class="header-dropdown dropdown">
+                <li>
+                  <a href="javascript:void(0);" class="full-screen"
+                    ><i class="icon-frame"></i
+                  ></a>
+                </li>
+                <li class="dropdown">
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  ></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);">Weekly</a></li>
+                    <li>
+                      <a href="javascript:void(0);">Monthly</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">Yearly</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="body" style="max-height: 320px; width: 100%">
+              <canvas id="pieChart" class="pie1"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Members List Table Section -->
+      <div class="row clearfix">
+        <div class="col-12 col-sm-12">
+          <div class="card">
+            <div
+              class="header d-flex justify-content-between align-items-center"
+            >
+              <h2>Recent Approved Members</h2>
+              <form id="table-searchbar" class="navbar-form search-form d-flex">
+                <input
+                  value
+                  class="form-control"
+                  placeholder="Search name..."
+                  type="text"
+                />
+                <button type="button" class="btn btn-default search-btn">
+                  <i class="fa fa-search"></i>
+                </button>
+              </form>
+            </div>
+            <div class="table-responsive table1">
+              <table class="table table-custom spacing5 mb-0 px-3">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>Email Address</th>
+                    <th>Gender</th>
+                    <th>Polling Unit</th>
+                    <th>View Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for member in approved_members %}
+                    {% if member.role != "ward_admin" %}
+                      <tr>
+                        <td>{{ forloop.counter0|stringformat:"02d" }}</td>
+                        <td>{{ member.fullname }}</td>
+                        <td>{{ member.username }}</td>
+                        <td>{{ member.email }}</td>
+                        <td>{{ member.gender }}</td>
+                        <td>{{ member.polling_unit }}</td>
+                        <td>
+                          <!-- <a href="#"><span class="btn btn-outline-success  rounded-3 py-1 px-3" data-bs-toggle="modal" data-bs-target="#memberDetailsModal">view</span></a> -->
+
+                          <a href="#"
+                            ><span
+                              class="btn btn-outline-success rounded-3 py-1 px-3 view-user-btn"
+                              data-bs-toggle="modal"
+                              data-bs-target="#memberDetailsModal{{ member.id }}"
+                              >view</span
+                            ></a
+                          >
+                          <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#userDetailsModal" data-user-id="{{ user.id }}"> -->
+                        </td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+            <!-- Table Pagination -->
+            <nav aria-label="Page navigation example" class="mt-3 px-3">
+              <ul class="pagination">
+                <li class="page-item active">
+                  <a
+                    class="page-link"
+                    href="javascript:void(0);"
+                    aria-label="Previous"
+                  >
+                    <span aria-hidden="true">«</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="javascript:void(0);">1</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:void(0);">2</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:void(0);">3</a>
+                </li>
+                <li class="page-item">
+                  <a
+                    class="page-link"
+                    href="javascript:void(0);"
+                    aria-label="Next"
+                  >
+                    <span aria-hidden="true">»</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Member Details Modal -->
+    {% for mem in approved_members %}
+    <div
+      class="modal fade"
+      id="memberDetailsModal{{ mem.id }}"
+      tabindex="-1"
+      aria-labelledby="memberDetailsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-container">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="memberDetailsModalLabel">
+              Member Profile
+            </h5>
+            <button
+              type="button"
+              class="btn-close bg-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body px-0">
+            <!-- Member Details Section -->
+            <div
+              class="row member-details d-flex flex-wrap gap-0 justify-content-between align-items-center rounded-4 w-100"
+            >
+              <div class="col-sm-3 member-profile">
+                <img
+                  id="modal-user-image"
+                  src="{{ mem.image.url }}"
+                  alt="User Image"
+                  class="img-fluid member-image object-fit-cover rounded-4 mb-4"
+                />
+              </div>
+
+              <div class="col-sm-9 text-right-sec">
+                <div
+                  class="top-sec d-flex gap-2 justify-content-between align-items-center mb-3 flex-wrap"
+                >
+                  <h5
+                    id="modal-user-name"
+                    class="member-name fw-bold mb-0 text-nowrap"
+                  >{{ mem.fullname|title }}</h5>
+                  <p class="d-flex align-items-center mb-0">Status: <span
+                    class="ms-2 badge rounded-5 fw-medium bg-success-subtle text-dark px-3 py-2 border-0">{{ mem.status }}</span></p>
+                  </p>
+                </div>
+
+                <div class="member-info row">
+                  <div class="col-md-6">
+                    <p class="member-id"><span class="fw-bold">ID No:</span>{{ mem.id }}</p>
+                    <p class="member-email"><span class="fw-bold">Email:</span> {{ mem.email }}</p>
+                    <p class="member-phone"><span class="fw-bold">Phone:</span> {{ mem.phone }}</p>
+                    <p class="member-gender"><span class="fw-bold">Gender:</span> {{ mem.gender }}</p>
+                    <p class="member-dob"><span class="fw-bold">DOB:</span> {{ mem.dob }}</p>
+                  </div>
+    
+                  <div class="col-md-6">
+                    <p class="member-role"><span class="fw-bold">Role:</span> Member</p>
+                    <p class="member-state"><span class="fw-bold">State:</span> {{ mem.state }}</p>
+                    <p class="member-lga"><span class="fw-bold">L.G.A:</span> {{ mem.lga }}</p>
+                    <p class="member-ward"><span class="fw-bold">Ward:</span> {{ mem.ward }}</p>
+                    <p class="member-ward"><span class="fw-bold">P Unit:</span> {{ mem.polling_unit }}</p>
+                  </div>
+                </div>
+
+                <div class="sec-btns d-flex flex-row gap-3 mt-2 flex-wrap">
+                  <button
+                    type="button"
+                    class="btn bg-primary-subtle text-primary fw-medium"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editMemberModal{{ mem.id }}"
+                  >
+                    <span class="me-1"
+                      ><i class="fa-regular fa-pen-to-square"></i
+                    ></span>
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    class="btn bg-secondary-subtle text-secondary fw-medium"
+                  >
+                    <span class="me-1"
+                      ><i class="fa-regular fa-envelope"></i
+                    ></span>
+                    Send Mail
+                  </button>
+                  <button
+                    type="button"
+                    class="btn bg-warning-subtle text-dark fw-medium"
+                  >
+                    <span class="me-1"
+                      ><i class="fa-solid fa-strikethrough"></i
+                    ></span>
+                    Suspend
+                  </button>
+                 
+                   <button type="submit" class="btn bg-danger-subtle text-danger fw-medium" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ mem.id }}">
+                      <span class="me-1"><i class="fa-regular fa-trash-can"></i></span> Delete
+                   </button>
+
+                  
+                </div>
+              </div>
+            </div>
+
+            <!-- Member Details Section End -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit member details modal -->
+    <div
+      class="modal fade"
+      id="editMemberModal{{ mem.id }}"
+      tabindex="-1"
+      aria-labelledby="editMemberModalLabel{{ mem.id }}"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Logo -->
+          <div class="auth_brand text-center mb-3">
+              <a class="navbar-brand" href="#">
+                  <img style="width: 100px" src="{% static 'assets/images/logo-removebg-preview.png' %}" alt="" />
+              
+              </a>
+          </div>
+          <form method="POST" action="{% url 'ward_admin' user_hash=expected_hash %}">
+            {% csrf_token %}
+            <input type="hidden" name="member_id" value="{{ mem.id }}">
+            <input type="hidden" name="action" value="edit_member">
+            
+            <div class="mb-3">
+              <label for="fullname{{ mem.id }}" class="form-label">Full Name</label>
+              <input type="text" name="fullname" id="fullname{{ mem.id }}" class="form-control" value="{{ mem.fullname }}">
+            </div>
+
+            <div class="mb-3">
+              <label for="username{{ mem.id }}" class="form-label">Username</label>
+              <input type="text" name="username" id="username{{ mem.id }}" class="form-control" value="{{ mem.username }}">
+            </div>
+
+            <div class="mb-3">
+              <label for="email{{ mem.id }}" class="form-label">Email</label>
+              <input type="email" name="email" id="email{{ mem.id }}" class="form-control" value="{{ mem.email }}">
+            </div>
+
+            <div class="mb-3">
+              <label for="phone{{ mem.id }}" class="form-label">Phone</label>
+              <input type="text" name="phone" id="phone{{ mem.id }}" class="form-control" value="{{ mem.phone }}">
+            </div>
+
+            <div class="mb-3">
+              <label for="gender{{ mem.id }}" class="form-label">Gender</label>
+              <!-- <input type="text" name="gender" id="gender{{ mem.id }}" class="form-control" value="{{ mem.gender }}"> -->
+              <select class="form-control round" id="genderSelect" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+        <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="confirmDeleteModal{{ mem.id }}" tabindex="-1" aria-labelledby="confirmDeleteModalLabel{{ mem.id }}" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="confirmDeleteModalLabel{{ mem.id }}">Confirm Deletion</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete <strong>{{ mem.fullname|title }}</strong>?<br>This action cannot be undone.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <form method="POST" action="{% url 'ward_admin' user_hash=expected_hash %}" >
+              {% csrf_token %}
+              <input type="hidden" name="member_id" value="{{ mem.id }}">
+               <input type="hidden" name="action" value="delete_member">
+              <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  let barChart;
+
+  function renderChart(labels, data) {
+    const ctx = document.getElementById('barChart').getContext('2d');
+    if (barChart) barChart.destroy();
+
+    barChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Polling Unit Members',
+          data: data,
+          backgroundColor: 'rgba(75, 192, 192, 0.7)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { precision: 0 }
+          }
+        }
+      }
+    });
+  }
+
+  function fetchChartData(filter = 'weekly') {
+    fetch(`/get-polling-unit-members/?filter=${filter}`)
+      .then(res => res.json())
+      .then(data => renderChart(data.labels, data.data));
+  }
+
+  // On page load
+  fetchChartData();
+
+  // Dropdown click handler
+  document.querySelectorAll('.filter-option').forEach(item => {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+      const filter = this.getAttribute('data-filter');
+      fetchChartData(filter);
+    });
+  });
+</script>
+
+<!-- peiChart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  let pieChart;
+
+  function renderPieChart(labels, data) {
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    if (pieChart) pieChart.destroy();
+
+    pieChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Agents per Polling Unit',
+          data: data,
+          backgroundColor: [
+            '#FF6384', '#36A2EB', '#FFCE56',
+            '#4BC0C0', '#9966FF', '#FF9F40',
+            '#E7E9ED', '#8e5ea2', '#3cba9f'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+        },
+      }
+    });
+  }
+
+  function fetchPieChartData() {
+    fetch('/get-agents-per-pu/')
+      .then(res => res.json())
+      .then(data => renderPieChart(data.labels, data.data));
+  }
+
+  // On page load
+  fetchPieChartData();
+</script>
+
+
+
+{% endblock content %}
